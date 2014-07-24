@@ -1,6 +1,4 @@
-node_modules/
-bower_components/
-*.log
-
-build/
-dist/
+nbproject/
+src/bower_components/
+src/vendor
+src/api/vendor
