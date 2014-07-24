@@ -1,0 +1,164 @@
+/* Basic layout stuff
+------------------------------------------------------------------------------*/
+body {
+    padding-top: 50px;
+}
+.starter-template {
+    padding: 40px 15px;
+}
+
+.skill-list {
+    height: 325px;
+    overflow: auto; 
+}
+
+.offset-bottom-sm {
+    margin-bottom: 4px;
+}
+
+.offset-bottom-md {
+    margin-bottom: 8px;
+}
+
+.offset-bottom-lg {
+    margin-bottom: 12px;
+}
+
+.arsenal-list li {
+    margin-bottom: 6px;
+}
+
+#selected-skill {
+    font-size: 20px;
+}
+
+#selected-skill-divider {
+    padding: 0 10px;
+    font-size: 20px;
+}
+
+.skill-table  th,
+.skill-table  td{
+    width: 25%;
+}
+
+#skill-sort-1,
+#skill-sort-2,
+#skill-sort-3 {
+    color: #222;
+}
+
+/* Main Banner
+------------------------------------------------------------------------------*/
+.main-banner {
+  background-image: url("/arsenal-lab/img/banner3.png"); 
+}
+
+/* Skill Default
+------------------------------------------------------------------------------*/
+.skill {
+    background-color: #6AB486;
+    background-repeat:no-repeat;
+    background-position: right 10px center;
+    text-align: left;
+}
+
+/* Skill types
+------------------------------------------------------------------------------*/
+
+.aura {
+    background-color: #6AB486;
+    background-image: url('/arsenal-lab/img/skills/aura_26.png');
+}
+
+.aura:hover {
+    background-color: #8AD5AC;
+}
+
+.attack {
+    background-color: #FF7D4A;
+}
+
+.attack:hover  {
+    background-color: #FF7D4A;
+}
+
+.defense {
+    background-color: #4167F9;
+}
+
+.defense:hover  {
+    background-color: #6787FA;
+}
+
+.erase {
+    background-color: #B246F3;
+}
+
+.erase:hover  {
+    background-color: #C36EF6;
+}
+
+.status {
+    background-color: #62EC3E;
+}
+
+.status:hover  {
+    background-color: #82F264;
+}
+
+.environment {
+    background-color: #33EDE5;
+}
+
+.environment:hover  {
+    background-color: #5CF2EC;
+}
+
+.special {
+    background-color: #DDE332;
+}
+
+.special:hover  {
+    background-color: #F1F759;
+}
+
+/* Skill schools
+------------------------------------------------------------------------------*/
+#school-toggle-nature,
+.nature {
+    background-image: url('/arsenal-lab/img/skills/nature_26.png') !important;
+}
+
+#school-toggle-optical,
+.optical {
+    background-image: url('/arsenal-lab/img/skills/optical_26.png') !important;
+}
+
+#school-toggle-faith,
+.faith {
+    background-image: url('/arsenal-lab/img/skills/faith_26.png') !important;
+}
+
+#school-toggle-psycho,
+.psycho {
+    background-image: url('/arsenal-lab/img/skills/psycho_26.png') !important;
+}
+
+#school-toggle-ki,
+.ki {
+    background-image: url('/arsenal-lab/img/skills/ki_26.png') !important;
+}
+
+/* School Toggle Buttons
+------------------------------------------------------------------------------*/
+#school-toggle-psycho,
+#school-toggle-optical,
+#school-toggle-nature,
+#school-toggle-ki,
+#school-toggle-faith {
+    background-repeat:no-repeat;
+    background-position: center;
+    text-align: left;
+    width:80px;
+}

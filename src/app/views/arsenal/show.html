@@ -1,0 +1,42 @@
+<div class="starter-template">
+
+    <div class="page-header">
+        <h1>ARSENAL: <span data-bind="text: name"></span> <small>by <span data-bind="text: author"></span></small></h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4><a data-bind="text: url, attr: { href: url  }" href="#" target="_blank"></a></h4>
+                    <p data-bind="text: description"></p>
+                    <p>Created on <span data-bind="text: created_date"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <ul data-bind="foreach: arsenalSkills[0]" class="arsenal-list list-unstyled">
+                <li><a data-bind="text: skill.name, attr: { class: cssNames }" role="button" href="#" ></a></li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <ul data-bind="foreach: arsenalSkills[1]" class="arsenal-list list-unstyled">
+                <li><a data-bind="text: skill.name, attr: { class: cssNames }" role="button" href="#" ></a></li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <ul data-bind="foreach: arsenalSkills[2]" class="arsenal-list list-unstyled">
+                <li><a data-bind="text: skill.name, attr: { class: cssNames }" role="button" href="#" ></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <a data-bind="click: editClicked" class="btn btn-primary btn-block" role="button" href="#" >Edit</a>
+        </div>
+    </div>
+
+</div>
