@@ -161,7 +161,7 @@ define(function(require) {
         _(arsenalConfig).forEach(function(item) {
 
             var skill = _.find(skills, function(obj) {
-                return obj.id == item.id
+                return obj.id === item.id;
             });
 
             var arsenalSkill = {
@@ -181,7 +181,7 @@ define(function(require) {
 
         var skills = [];
 
-        _(arsenalSkills()).forEach(function(arsenalGroup) {
+        _(arsenalSkills).forEach(function(arsenalGroup) {
 
             _(arsenalGroup).forEach(function(arsenalSkill) {
 

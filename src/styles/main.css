@@ -37,6 +37,10 @@ body {
     font-size: 20px;
 }
 
+#type-min-table td {
+    padding: 4px;
+}
+
 .skill-table  th,
 .skill-table  td{
     width: 25%;

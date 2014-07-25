@@ -6,26 +6,47 @@ define(function(require) {
     var ko = require('knockout');
     var arsenalClient = require('arsenal-lab/app/clients/arsenalClient');
     var arsenalHelper = require('arsenal-lab/app/viewModels/helpers/arsenalHelper');
+    var arsenalRandomizer = require('arsenal-lab/app/viewModels/helpers/arsenalRandomizer');
 
     var ArsenalCreate = function(dto) {
 
         var self = this;
 
-        var skills = dto.data.skills;
-        var arsenal = initArsenal(skills);
+        self.skills = dto.data.skills;
+        var arsenal = initArsenal(self.skills);
 
         var defaultSkill = {
             index1: null,
             index2: null,
-            skill: skills[0]
+            skill: self.skills[0]
         };
 
         // Initialize skillClicked with a skill so binding won't break.
         self.currentArsenalSkill = ko.observable(defaultSkill);
         self.skillSelected = ko.observable(defaultSkill);
-        self.arsenalSkills = ko.observableArray(buildNewArsenalSkills(arsenal, skills));
-        self.modalSkills = ko.observableArray(arsenalHelper.buildModalSkills(skills, true));
+        self.arsenalSkills = ko.observableArray(buildNewArsenalSkills(arsenal, self.skills));
+        self.modalSkills = ko.observableArray(arsenalHelper.buildModalSkills(self.skills, true));
         self.skillMeta = ko.observable('');
+
+        self.randAura = ko.observable(15);
+        self.randAttack = ko.observable();
+        self.randDefense = ko.observable();
+        self.randEnvironment = ko.observable();
+        self.randErase = ko.observable();
+        self.randSpecial = ko.observable();
+        self.randStatus = ko.observable();
+
+        self.randCount = ko.computed(function() {
+
+            var keys = ['randAura', 'randAttack', 'randDefense', 'randEnvironment', 'randErase', 'randSpecial', 'randStatus'];
+            var total = 0;
+
+            _(keys).forEach(function(key) {
+                total += parseInt(self[key](), 10) || 0;
+            });
+
+            return total;
+        }, this);
 
         self.arsenalSkillClicked = function(arsenalSkill) {
 
@@ -47,7 +68,7 @@ define(function(require) {
 
         self.sortClicked = function() {
 
-            var sortedArsenal = arsenalHelper.arsenalSort(self.arsenalSkills);
+            var sortedArsenal = arsenalHelper.arsenalSort(self.arsenalSkills());
 
             self.arsenalSkills(sortedArsenal);
         };
@@ -148,7 +169,7 @@ define(function(require) {
             });
 
             $(".sort-popover").on("submit", "form", function(event) {
-                
+
                 event.preventDefault();
 
                 var sort1 = $(this).find('#skill-sort-1').val();
@@ -156,24 +177,70 @@ define(function(require) {
                 var sort3 = $(this).find('#skill-sort-3').val();
 
                 var params = [];
-                
+
                 if (sort1 !== 'none') {
                     params.push(sort1);
                 }
-                
+
                 if (sort2 !== 'none') {
                     params.push(sort2);
                 }
-                
+
                 if (sort3 !== 'none') {
                     params.push(sort3);
                 }
 
                 var sortedModalSkills = arsenalHelper.sortSkills(self.modalSkills, params);
-                
+
                 self.modalSkills(sortedModalSkills);
             });
         }();
+
+        self.randomClicked = function() {
+            $('#random-modal').modal();
+        };
+
+        self.randomExecuteClicked = function() {
+
+            var form = $('#random-form');
+            
+            var schools = [];
+            form.find("input:checkbox[name=schools]:checked").each(function()
+            {
+                schools.push($(this).val());
+            });
+            
+            var attackRanges = [];
+            form.find("input:checkbox[name=attack-range]:checked").each(function()
+            {
+                attackRanges.push($(this).val());
+            });
+
+            var options = {
+                caseSize: form.find('input[name=case]:checked').val(),
+                schools: schools,
+                attackRanges: attackRanges,
+                typeMinimums: {
+                    Aura: form.find('input[name=aura]').val(),
+                    Attack: form.find('input[name=attack]').val(),
+                    Defense: form.find('input[name=defense]').val(),
+                    Environment: form.find('input[name=environment]').val(),
+                    Erase: form.find('input[name=erase]').val(),
+                    Special: form.find('input[name=special]').val(),
+                    Status: form.find('input[name=status]').val(),
+                }
+            };
+
+            var randomArsenal = arsenalRandomizer.execute(self.skills, options);
+          
+            var newArsenalSkills = buildNewArsenalSkillsById(randomArsenal, self.skills);
+            
+            var sortedArsenal = arsenalHelper.arsenalSort(newArsenalSkills);
+
+            self.arsenalSkills(sortedArsenal);
+
+            $('#random-modal').modal('hide');
+        };
     };
 
     var initArsenal = function(skills) {
@@ -203,7 +270,7 @@ define(function(require) {
         var arsenalSkills = [[], [], []];
 
         _(arsenal).forEach(function(skillIndex, index) {
-
+            
             var index1;
             if (index >= 0 && index <= 9) {
                 index1 = 0;
@@ -214,6 +281,37 @@ define(function(require) {
             }
 
             var skill = skills[skillIndex];
+
+            var arsenalSkill = {
+                index1: index1,
+                index2: arsenalSkills[index1].length,
+                skill: skill,
+                cssNames: 'btn btn-default btn-block skill ' + skill.type.toLowerCase() + ' ' + skill.school.toLowerCase()
+            };
+
+            arsenalSkills[index1].push(ko.observable(arsenalSkill));
+        });
+
+        return arsenalSkills;
+    };
+    
+    var buildNewArsenalSkillsById = function(arsenal, skills) {
+        var arsenalSkills = [[], [], []];
+
+        _(arsenal).forEach(function(skillId, index) {
+            
+            var index1;
+            if (index >= 0 && index <= 9) {
+                index1 = 0;
+            } else if (index >= 10 && index <= 19) {
+                index1 = 1;
+            } else {
+                index1 = 2;
+            }
+            
+            var skill = _.find(skills, function(obj) {
+                return obj.id === skillId;
+            });
 
             var arsenalSkill = {
                 index1: index1,

@@ -12,11 +12,12 @@
 
         <!-- Bootstrap core CSS -->
         <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> -->
+        <!-- <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/darkly/bootstrap.min.css" rel="stylesheet"> -->
         <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/darkly/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom styles for this template -->
-        <!-- <link href="/arsenal-lab/styles/main.css?bust=<?= time(); ?>" rel="stylesheet"> -->
-        <link href="/arsenal-lab/styles/main.css?version=20140724-0041" rel="stylesheet">
+        <link href="/arsenal-lab/styles/main.css?bust=<?= time(); ?>" rel="stylesheet">
+        <!-- <link href="/arsenal-lab/styles/main.css?version=20140724-0041" rel="stylesheet"> -->
 
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="/arsenal-lab/vendor/ie10-viewport-bug-workaround.js"></script>
@@ -60,7 +61,7 @@
         <script src="/arsenal-lab/bower_components/rsvp/rsvp.min.js"></script>
         <script src="/arsenal-lab/bower_components/page/index.js"></script>
         <script src="/arsenal-lab/bower_components/store-js/store.min.js"></script>
-        <!-- <script data-main="/arsenal-lab/app/main.js?bust=<?= time(); ?>" src="/arsenal-lab/bower_components/requirejs/require.js"></script> -->
-        <script data-main="/arsenal-lab/app/main.js?version=20140724" src="/arsenal-lab/bower_components/requirejs/require.js"></script>
+        <script data-main="/arsenal-lab/app/main.js?bust=<?= time(); ?>" src="/arsenal-lab/bower_components/requirejs/require.js"></script>
+        <!-- <script data-main="/arsenal-lab/app/main.js?version=20140724" src="/arsenal-lab/bower_components/requirejs/require.js"></script> -->
     </body>
 </html>

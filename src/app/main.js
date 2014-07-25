@@ -2,6 +2,7 @@
 
 require.config({
     //dev//urlArgs: "bust=" + (new Date()).getTime(),
+    urlArgs: "bust=" + (new Date()).getTime(),
     baseUrl: '/',
     paths: {
         text: 'arsenal-lab/bower_components/requirejs-text/text',
