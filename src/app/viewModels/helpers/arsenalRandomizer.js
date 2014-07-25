@@ -91,7 +91,7 @@ define(function(require) {
 
     var filterSkillsByAttackRange = function(skills, attackRanges) {
 
-        // Getting the options not selecting looks a bit odd here. But I'm doing
+        // Getting the options not selected looks a bit odd here. But I'm doing
         // this because there are some wildcard ranges that could be stored in
         // the database in weird notations and I still want to potentially include 
         // them in an arsenal result.

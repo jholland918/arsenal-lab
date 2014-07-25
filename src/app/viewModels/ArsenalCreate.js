@@ -51,7 +51,6 @@ define(function(require) {
         self.arsenalSkillClicked = function(arsenalSkill) {
 
             self.currentArsenalSkill(arsenalSkill);
-            self.skillSelected(arsenalSkill);
             $('#skill-modal').modal();
         };
 
@@ -203,13 +202,13 @@ define(function(require) {
         self.randomExecuteClicked = function() {
 
             var form = $('#random-form');
-            
+
             var schools = [];
             form.find("input:checkbox[name=schools]:checked").each(function()
             {
                 schools.push($(this).val());
             });
-            
+
             var attackRanges = [];
             form.find("input:checkbox[name=attack-range]:checked").each(function()
             {
@@ -232,14 +231,18 @@ define(function(require) {
             };
 
             var randomArsenal = arsenalRandomizer.execute(self.skills, options);
-          
+
             var newArsenalSkills = buildNewArsenalSkillsById(randomArsenal, self.skills);
-            
+
             var sortedArsenal = arsenalHelper.arsenalSort(newArsenalSkills);
 
             self.arsenalSkills(sortedArsenal);
 
             $('#random-modal').modal('hide');
+        };
+        
+        self.showInfo = function(arsenalEntry) {
+            $('#skill-meta').html(arsenalEntry.skill.meta);
         };
     };
 
@@ -270,7 +273,7 @@ define(function(require) {
         var arsenalSkills = [[], [], []];
 
         _(arsenal).forEach(function(skillIndex, index) {
-            
+
             var index1;
             if (index >= 0 && index <= 9) {
                 index1 = 0;
@@ -294,12 +297,12 @@ define(function(require) {
 
         return arsenalSkills;
     };
-    
+
     var buildNewArsenalSkillsById = function(arsenal, skills) {
         var arsenalSkills = [[], [], []];
 
         _(arsenal).forEach(function(skillId, index) {
-            
+
             var index1;
             if (index >= 0 && index <= 9) {
                 index1 = 0;
@@ -308,7 +311,7 @@ define(function(require) {
             } else {
                 index1 = 2;
             }
-            
+
             var skill = _.find(skills, function(obj) {
                 return obj.id === skillId;
             });

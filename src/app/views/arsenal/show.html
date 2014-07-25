@@ -15,28 +15,30 @@
             </div>
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-4">
             <ul data-bind="foreach: arsenalSkills[0]" class="arsenal-list list-unstyled">
-                <li><a data-bind="text: skill.name, attr: { class: cssNames }" role="button" href="#" ></a></li>
+                <li><a data-bind="text: skill.name, attr: { class: cssNames }, event: { mouseover: $parent.showInfo }" role="button" href="#" ></a></li>
             </ul>
         </div>
         <div class="col-md-4">
             <ul data-bind="foreach: arsenalSkills[1]" class="arsenal-list list-unstyled">
-                <li><a data-bind="text: skill.name, attr: { class: cssNames }" role="button" href="#" ></a></li>
+                <li><a data-bind="text: skill.name, attr: { class: cssNames }, event: { mouseover: $parent.showInfo }" role="button" href="#" ></a></li>
             </ul>
         </div>
         <div class="col-md-4">
             <ul data-bind="foreach: arsenalSkills[2]" class="arsenal-list list-unstyled">
-                <li><a data-bind="text: skill.name, attr: { class: cssNames }" role="button" href="#" ></a></li>
+                <li><a data-bind="text: skill.name, attr: { class: cssNames }, event: { mouseover: $parent.showInfo }" role="button" href="#" ></a></li>
             </ul>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
-            <a data-bind="click: editClicked" class="btn btn-primary btn-block" role="button" href="#" >Edit</a>
+            <a data-bind="click: editClicked" class="btn btn-primary btn-md btn-block offset-bottom-md" role="button" href="#" >Edit</a>
         </div>
+    </div>
+    <div class="row">
+        <div id="skill-meta" class="col-md-12"></div>
     </div>
 
 </div>

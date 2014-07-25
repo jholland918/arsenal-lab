@@ -52,10 +52,24 @@ body {
     color: #222;
 }
 
+#skill-meta .panel {
+    float:left;
+    width: 40%;
+    margin-right: 4%;
+    margin-left: 4%;
+}
+
+#skill-meta .skill-info {
+    float:left;
+    width: 40%;
+    margin-right: 4%;
+    margin-left: 4%;
+}
+
 /* Main Banner
 ------------------------------------------------------------------------------*/
 .main-banner {
-  background-image: url("/arsenal-lab/img/banner3.png"); 
+    background-image: url("/arsenal-lab/img/banner3.png"); 
 }
 
 /* Skill Default
@@ -64,7 +78,13 @@ body {
     background-color: #6AB486;
     background-repeat:no-repeat;
     background-position: right 10px center;
+    color: #262125;
+    font-weight: bold;
     text-align: left;
+}
+
+.skill:hover {
+    color: #262125;
 }
 
 /* Skill types
@@ -80,7 +100,7 @@ body {
 }
 
 .attack {
-    background-color: #FF7D4A;
+    background-color: #FF601F;
 }
 
 .attack:hover  {
@@ -129,40 +149,33 @@ body {
 
 /* Skill schools
 ------------------------------------------------------------------------------*/
-#school-toggle-nature,
 .nature {
     background-image: url('/arsenal-lab/img/skills/nature_26.png') !important;
 }
 
-#school-toggle-optical,
 .optical {
     background-image: url('/arsenal-lab/img/skills/optical_26.png') !important;
 }
 
-#school-toggle-faith,
 .faith {
     background-image: url('/arsenal-lab/img/skills/faith_26.png') !important;
 }
 
-#school-toggle-psycho,
 .psycho {
     background-image: url('/arsenal-lab/img/skills/psycho_26.png') !important;
 }
 
-#school-toggle-ki,
 .ki {
     background-image: url('/arsenal-lab/img/skills/ki_26.png') !important;
 }
 
 /* School Toggle Buttons
 ------------------------------------------------------------------------------*/
-#school-toggle-psycho,
-#school-toggle-optical,
-#school-toggle-nature,
-#school-toggle-ki,
-#school-toggle-faith {
-    background-repeat:no-repeat;
-    background-position: center;
-    text-align: left;
+#school-toggle input {
+    text-align: center;
     width:80px;
+}
+
+#school-toggle .btn-primary:hover {
+    background-color: #375a7f;
 }

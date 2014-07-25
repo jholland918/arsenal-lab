@@ -130,22 +130,33 @@ define(function(require) {
             skillRarity = rarityStars[skillRarity];
         }
 
+        var strDef = '';
+
+        switch (skill.type) {
+            case 'Attack':
+                strDef = ' STR ' + skill.str_def;
+                break;
+            case 'Defense':
+                strDef = ' DEF ' + skill.str_def;
+                break;
+        }
+
         html += '<div class="panel panel-default">';
         html += '<div class="panel-heading">' + skill.name + '</div>';
         html += '<div class="panel-body">';
-        html += '<p class="skill-stats">COST ' + skill.cost + ' STR/DEF ' + skill.str_def + ' @ ' + skillUse + ' ' + skill.distance + '</p>';
+        html += '<p class="skill-stats">COST ' + skill.cost + strDef + ' @ ' + skillUse + ' ' + skill.distance + '</p>';
         html += '<p class="skill-desc">' + skill.skill_text + '</p>';
         html += '</div>';
         html += '</div>';
         html += '<div class="skill-info"><table class="table table-condensed table-hover skill-table">';
         html += '<tr><th>ID</th><td>: ' + skill.skill_number + '</td>';
         html += '<th>Rarity</th><td>: ' + skillRarity + '</td></tr>';
-        html += '<tr><th>Air</th><td>: ' + skill.air + '</td>';
-        html += '<th>Velocity</th><td>: ' + skill.velocity + '</td></tr>';
-        html += '<tr><th>Homing</th><td>: ' + skill.homing + '</td>';
-        html += '<th>Recovery</th><td>: ' + skill.recovery + '</td></tr>';
         html += '</table>';
-        html += '<p><strong>Notes</strong>: ' + skill.notes + '</p>';
+
+        if (skill.notes) {
+            html += '<p>' + skill.notes + '</p>';
+        }
+
         html += '</div></div>';
         html += '</div>';
 
@@ -163,6 +174,8 @@ define(function(require) {
             var skill = _.find(skills, function(obj) {
                 return obj.id === item.id;
             });
+            
+            skill.meta = buildSkillMetaItem(skill);
 
             var arsenalSkill = {
                 index1: item.ix1,

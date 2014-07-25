@@ -24,6 +24,11 @@ define(function(require) {
             // to the same element" so I'm using this workaround for now.
             window.location.replace('/arsenal-lab/arsenal/edit/' + dto.payload.arsenalId);
         };
+        
+        self.showInfo = function(arsenalEntry) {
+            debugger;
+            $('#skill-meta').html(arsenalEntry.skill.meta);
+        };
     };
 
     return ArsenalShow;

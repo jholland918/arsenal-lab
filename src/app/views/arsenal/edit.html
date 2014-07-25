@@ -7,27 +7,30 @@
     <div class="row">
         <div class="col-md-4">
             <ul data-bind="foreach: arsenalSkills()[0]" class="arsenal-list list-unstyled">
-                <li><a data-bind="text: skill.name, click: $parent.arsenalSkillClicked, attr: { class: cssNames }" role="button" href="#" ></a></li>
+                <li><a data-bind="text: skill.name, click: $parent.arsenalSkillClicked, attr: { class: cssNames }, event: { mouseover: $parent.showInfo }" role="button" href="#" ></a></li>
             </ul>
         </div>
         <div class="col-md-4">
             <ul data-bind="foreach: arsenalSkills()[1]" class="arsenal-list list-unstyled">
-                <li><a data-bind="text: skill.name, click: $parent.arsenalSkillClicked, attr: { class: cssNames }" role="button" href="#" ></a></li>
+                <li><a data-bind="text: skill.name, click: $parent.arsenalSkillClicked, attr: { class: cssNames }, event: { mouseover: $parent.showInfo }" role="button" href="#" ></a></li>
             </ul>
         </div>
         <div class="col-md-4">
             <ul data-bind="foreach: arsenalSkills()[2]" class="arsenal-list list-unstyled">
-                <li><a data-bind="text: skill.name, click: $parent.arsenalSkillClicked, attr: { class: cssNames }" role="button" href="#" ></a></li>
+                <li><a data-bind="text: skill.name, click: $parent.arsenalSkillClicked, attr: { class: cssNames }, event: { mouseover: $parent.showInfo }" role="button" href="#" ></a></li>
             </ul>
         </div>
     </div>
     <div class="row">
         <div class="col-md-8">
-            <button data-bind="click: publishClicked " type="button" class="btn btn-primary btn-lg btn-block offset-bottom-md">Publish</button>
+            <button data-bind="click: publishClicked " type="button" class="btn btn-primary btn-md btn-block offset-bottom-md">Publish</button>
         </div>
         <div class="col-md-4">
-            <button data-bind="click: sortClicked" type="button" class="btn btn-default btn-lg btn-block">Sort</button>
+            <button data-bind="click: sortClicked" type="button" class="btn btn-default btn-md btn-block">Sort</button>
         </div>
+    </div>
+    <div class="row">
+        <div id="skill-meta" class="col-md-12"></div>
     </div>
 
     <!-- Skill Modal -->
@@ -36,22 +39,21 @@
             <div class="modal-content">
                 <div class="modal-header text-center">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <!-- These toggle buttons seem to get buggy if I don't use all these &nbsp;'s -->
-                    <div class="btn-group" data-toggle="buttons">
-                        <label data-bind="click: toggleVisiblePsycho" id="school-toggle-psycho" class="btn btn-primary active">
-                            <input data-bind="checked: isVisiblePsycho" type="checkbox"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div id="school-toggle" class="btn-group" data-toggle="buttons">
+                        <label data-bind="click: toggleVisiblePsycho" class="btn btn-primary active">
+                            <input data-bind="checked: isVisiblePsycho" type="checkbox"> <img src="/arsenal-lab/img/skills/psycho_26.png" alt="Psycho">
                         </label>
-                        <label data-bind="click: toggleVisibleOptical" id="school-toggle-optical" class="btn btn-primary active">
-                            <input data-bind="checked: isVisibleOptical" type="checkbox"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label data-bind="click: toggleVisibleOptical" class="btn btn-primary active">
+                            <input data-bind="checked: isVisibleOptical" type="checkbox"> <img src="/arsenal-lab/img/skills/optical_26.png" alt="optical">
                         </label>
-                        <label data-bind="click: toggleVisibleNature" id="school-toggle-nature" class="btn btn-primary active">
-                            <input data-bind="checked: isVisibleNature" type="checkbox"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label data-bind="click: toggleVisibleNature" class="btn btn-primary active">
+                            <input data-bind="checked: isVisibleNature" type="checkbox"> <img src="/arsenal-lab/img/skills/nature_26.png" alt="nature">
                         </label>
-                        <label data-bind="click: toggleVisibleKi" id="school-toggle-ki" class="btn btn-primary active">
-                            <input data-bind="checked: isVisibleKi" type="checkbox"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label data-bind="click: toggleVisibleKi" class="btn btn-primary active">
+                            <input data-bind="checked: isVisibleKi" type="checkbox"> <img src="/arsenal-lab/img/skills/ki_26.png" alt="ki">
                         </label>
-                        <label data-bind="click: toggleVisibleFaith" id="school-toggle-faith" class="btn btn-primary active">
-                            <input data-bind="checked: isVisibleFaith" type="checkbox"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label data-bind="click: toggleVisibleFaith" class="btn btn-primary active">
+                            <input data-bind="checked: isVisibleFaith" type="checkbox"> <img src="/arsenal-lab/img/skills/faith_26.png" alt="faith">
                         </label>
                     </div>
                 </div>

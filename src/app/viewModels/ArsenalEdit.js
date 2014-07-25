@@ -28,7 +28,6 @@ define(function(require) {
         self.arsenalSkillClicked = function(arsenalSkill) {
 
             self.currentArsenalSkill(arsenalSkill);
-            self.skillSelected(arsenalSkill);
             $('#skill-modal').modal();
         };
 
@@ -171,6 +170,10 @@ define(function(require) {
                 self.modalSkills(sortedModalSkills);
             });
         }();
+        
+        self.showInfo = function(arsenalEntry) {
+            $('#skill-meta').html(arsenalEntry.skill.meta);
+        };
     };
 
     return ArsenalEdit;
