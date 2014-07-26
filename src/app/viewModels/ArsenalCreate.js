@@ -15,6 +15,8 @@ define(function(require) {
         self.skills = dto.data.skills;
         var arsenal = initArsenal(self.skills);
 
+        arsenalHelper.initMetaPopovers();
+
         var defaultSkill = {
             index1: null,
             index2: null,
@@ -95,7 +97,7 @@ define(function(require) {
         };
 
         self.saveArsenal = function() {
-            
+
             var payload = $('#save-form').serializeArray();
 
             payload.push({
@@ -239,10 +241,6 @@ define(function(require) {
             self.arsenalSkills(sortedArsenal);
 
             $('#random-modal').modal('hide');
-        };
-        
-        self.showInfo = function(arsenalEntry) {
-            $('#skill-meta').html(arsenalEntry.skill.meta);
         };
     };
 

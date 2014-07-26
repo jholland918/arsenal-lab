@@ -9,6 +9,8 @@ define(function(require) {
     var ArsenalShow = function(dto) {
         
         var self = this;
+        
+        arsenalHelper.initMetaPopovers();
 
         self.arsenalSkills = arsenalHelper.buildArsenalSkills(dto.data.arsenal, dto.data.skills);
 
@@ -23,11 +25,6 @@ define(function(require) {
             // knockout error of "Error You cannot apply bindings multiple times 
             // to the same element" so I'm using this workaround for now.
             window.location.replace('/arsenal-lab/arsenal/edit/' + dto.payload.arsenalId);
-        };
-        
-        self.showInfo = function(arsenalEntry) {
-            debugger;
-            $('#skill-meta').html(arsenalEntry.skill.meta);
         };
     };
 

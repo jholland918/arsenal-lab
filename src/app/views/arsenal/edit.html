@@ -7,17 +7,17 @@
     <div class="row">
         <div class="col-md-4">
             <ul data-bind="foreach: arsenalSkills()[0]" class="arsenal-list list-unstyled">
-                <li><a data-bind="text: skill.name, click: $parent.arsenalSkillClicked, attr: { class: cssNames }, event: { mouseover: $parent.showInfo }" role="button" href="#" ></a></li>
+                <li><a data-bind="text: skill.name, click: $parent.arsenalSkillClicked, attr: { class: cssNames, 'data-content': skill.meta, rel: skill.type !== 'Aura' ? 'meta' : '' }" role="button" href="#" ></a></li>
             </ul>
         </div>
         <div class="col-md-4">
             <ul data-bind="foreach: arsenalSkills()[1]" class="arsenal-list list-unstyled">
-                <li><a data-bind="text: skill.name, click: $parent.arsenalSkillClicked, attr: { class: cssNames }, event: { mouseover: $parent.showInfo }" role="button" href="#" ></a></li>
+                <li><a data-bind="text: skill.name, click: $parent.arsenalSkillClicked, attr: { class: cssNames, 'data-content': skill.meta, rel: skill.type !== 'Aura' ? 'meta' : '' }" role="button" href="#" ></a></li>
             </ul>
         </div>
         <div class="col-md-4">
             <ul data-bind="foreach: arsenalSkills()[2]" class="arsenal-list list-unstyled">
-                <li><a data-bind="text: skill.name, click: $parent.arsenalSkillClicked, attr: { class: cssNames }, event: { mouseover: $parent.showInfo }" role="button" href="#" ></a></li>
+                <li><a data-bind="text: skill.name, click: $parent.arsenalSkillClicked, attr: { class: cssNames, 'data-content': skill.meta, rel: skill.type !== 'Aura' ? 'meta' : '' }" role="button" href="#" ></a></li>
             </ul>
         </div>
     </div>
@@ -28,9 +28,6 @@
         <div class="col-md-4">
             <button data-bind="click: sortClicked" type="button" class="btn btn-default btn-md btn-block">Sort</button>
         </div>
-    </div>
-    <div class="row">
-        <div id="skill-meta" class="col-md-12"></div>
     </div>
 
     <!-- Skill Modal -->

@@ -11,6 +11,8 @@ define(function(require) {
 
         var self = this;
         var skills = dto.data.skills;
+        
+        arsenalHelper.initMetaPopovers();
 
         var defaultSkill = {
             index1: null,
@@ -170,10 +172,6 @@ define(function(require) {
                 self.modalSkills(sortedModalSkills);
             });
         }();
-        
-        self.showInfo = function(arsenalEntry) {
-            $('#skill-meta').html(arsenalEntry.skill.meta);
-        };
     };
 
     return ArsenalEdit;

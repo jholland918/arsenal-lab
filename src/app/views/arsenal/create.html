@@ -7,17 +7,17 @@
     <div id="arsenal-container" class="row">
         <div class="col-md-4">
             <ul data-bind="foreach: arsenalSkills()[0]" class="arsenal-list list-unstyled">
-                <li><a data-bind="text: skill.name, click: $parent.arsenalSkillClicked, attr: { class: cssNames }, event: { mouseover: $parent.showInfo }" rel="popover" role="button" href="#" ></a></li>
+                <li><a data-bind="text: skill.name, click: $parent.arsenalSkillClicked, attr: { class: cssNames, 'data-content': skill.meta, rel: skill.type !== 'Aura' ? 'meta' : '' }" role="button" href="#" ></a></li>
             </ul>
         </div>
         <div class="col-md-4">
             <ul data-bind="foreach: arsenalSkills()[1]" class="arsenal-list list-unstyled">
-                <li><a data-bind="text: skill.name, click: $parent.arsenalSkillClicked, attr: { class: cssNames }, event: { mouseover: $parent.showInfo }" rel="popover" role="button" href="#" ></a></li>
+                <li><a data-bind="text: skill.name, click: $parent.arsenalSkillClicked, attr: { class: cssNames, 'data-content': skill.meta, rel: skill.type !== 'Aura' ? 'meta' : '' }" role="button" href="#" ></a></li>
             </ul>
         </div>
         <div class="col-md-4">
             <ul data-bind="foreach: arsenalSkills()[2]" class="arsenal-list list-unstyled">
-                <li><a data-bind="text: skill.name, click: $parent.arsenalSkillClicked, attr: { class: cssNames }, event: { mouseover: $parent.showInfo }" rel="popover" role="button" href="#" ></a></li>
+                <li><a data-bind="text: skill.name, click: $parent.arsenalSkillClicked, attr: { class: cssNames, 'data-content': skill.meta, rel: skill.type !== 'Aura' ? 'meta' : '' }" role="button" href="#" ></a></li>
             </ul>
         </div>
     </div>
@@ -32,10 +32,6 @@
             <button data-bind="click: randomClicked" type="button" class="btn btn-default btn-md btn-block">Random</button>
         </div>
     </div>
-    <div class="row">
-        <div id="skill-meta" class="col-md-12"></div>
-    </div>
-    
     
     <!-- Skill Modal -->
     <div class="modal fade" id="skill-modal" tabindex="-1" role="dialog" aria-labelledby="skill-modal-label" aria-hidden="true">

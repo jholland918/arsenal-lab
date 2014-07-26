@@ -174,7 +174,7 @@ define(function(require) {
             var skill = _.find(skills, function(obj) {
                 return obj.id === item.id;
             });
-            
+
             skill.meta = buildSkillMetaItem(skill);
 
             var arsenalSkill = {
@@ -244,11 +244,26 @@ define(function(require) {
         return sortedArsenalSkills;
     };
 
+    var initMetaPopovers = function() {
+        
+        var popOverSettings = {
+            placement: 'bottom',
+            container: '#shell',
+            html: true,
+            selector: '[rel="meta"]',
+            trigger: 'hover',
+            delay: {show: 500, hide: 100}
+        };
+
+        $('body').popover(popOverSettings);
+    };
+
     return {
         buildArsenalConfig: buildArsenalConfig,
         buildModalSkills: buildModalSkills,
         buildArsenalSkills: buildArsenalSkills,
         arsenalSort: arsenalSort,
-        sortSkills: sortSkills
+        sortSkills: sortSkills,
+        initMetaPopovers: initMetaPopovers
     };
 });
