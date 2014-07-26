@@ -3,7 +3,7 @@
 define('ROOT', dirname(dirname(__FILE__)));
 define('API_ROOT', dirname(__FILE__));
 define('CONTROLLER_PATH', API_ROOT . '/controllers');
-define('DB_FILE', API_ROOT . '/dal/arsenal_lab.sqlite3');
+define('DB_FILE', API_ROOT . '/dal/sqlite/arsenal_lab.sqlite3');
 
 require API_ROOT . '/vendor/Slim/Slim.php';
 

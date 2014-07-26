@@ -95,7 +95,7 @@ define(function(require) {
         };
 
         self.saveArsenal = function() {
-
+            
             var payload = $('#save-form').serializeArray();
 
             payload.push({
@@ -111,7 +111,7 @@ define(function(require) {
             arsenalClient.save(dto)
                     .then(self.updateAfterSave)
                     .catch(function(error) {
-                        alert(error);
+                        alert(JSON.stringify(error));
                     });
 
             $('#save-modal').modal('hide');
