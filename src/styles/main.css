@@ -24,6 +24,11 @@ body {
     margin-bottom: 12px;
 }
 
+#shell {
+    /* Make it easier to view arsenal popovers that display at the bottom of the page */
+    margin-bottom: 250px;  
+}
+
 .arsenal-list li {
     margin-bottom: 6px;
 }
@@ -44,26 +49,13 @@ body {
 .skill-table  th,
 .skill-table  td{
     width: 25%;
+    white-space: nowrap;
 }
 
 #skill-sort-1,
 #skill-sort-2,
 #skill-sort-3 {
     color: #222;
-}
-
-#skill-meta .panel {
-    float:left;
-    width: 40%;
-    margin-right: 4%;
-    margin-left: 4%;
-}
-
-#skill-meta .skill-info {
-    float:left;
-    width: 40%;
-    margin-right: 4%;
-    margin-left: 4%;
 }
 
 /* Main Banner
@@ -178,4 +170,28 @@ body {
 
 #school-toggle .btn-primary:hover {
     background-color: #375a7f;
+}
+
+/* Bar chart
+------------------------------------------------------------------------------*/
+.bar-chart th,
+.bar-chart td {
+    vertical-align: bottom;
+    padding: 0 4px;
+}
+
+.bar-chart th {
+    text-align: center;
+}
+
+.bar-chart td {
+    height: 100px;
+}
+
+.bar {
+    width: 20px;
+    background-color: #464545;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
 }

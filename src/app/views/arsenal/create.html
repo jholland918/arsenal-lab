@@ -1,9 +1,46 @@
 <div class="starter-template">
 
-    <div class="page-header">
-        <h1>CREATE</h1>
+    <div class="row">
+        <div class="col-md-8 page-header">
+            <h1>CREATE</h1>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="bar-chart">
+                        <tr>
+                            <th rowspan="3" style="text-align: center; vertical-align: top;">Skills</th>
+                            <td><div class="bar" data-toggle="tooltip" data-placement="top" title=""></div></td>
+                            <td><div class="bar" data-toggle="tooltip" data-placement="top" title=""></div></td>
+                            <td><div class="bar" data-toggle="tooltip" data-placement="top" title=""></div></td>
+                            <td><div class="bar" data-toggle="tooltip" data-placement="top" title=""></div></td>
+                            <td><div class="bar" data-toggle="tooltip" data-placement="top" title=""></div></td>
+                            <td><div class="bar" data-toggle="tooltip" data-placement="top" title=""></div></td>
+                            <td><div class="bar" data-toggle="tooltip" data-placement="top" title=""></div></td>
+                            <td><div class="bar" data-toggle="tooltip" data-placement="top" title=""></div></td>
+                            <td><div class="bar" data-toggle="tooltip" data-placement="top" title=""></div></td>
+                        </tr>
+                        <tr>
+                            <th>0</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+                            <th>8+</th>
+                        </tr>
+                        <tr>
+                            <th colspan="9" style="text-align: center;">
+                                Cost
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-
     <div id="arsenal-container" class="row">
         <div class="col-md-4">
             <ul data-bind="foreach: arsenalSkills()[0]" class="arsenal-list list-unstyled">
@@ -32,7 +69,7 @@
             <button data-bind="click: randomClicked" type="button" class="btn btn-default btn-md btn-block">Random</button>
         </div>
     </div>
-    
+
     <!-- Skill Modal -->
     <div class="modal fade" id="skill-modal" tabindex="-1" role="dialog" aria-labelledby="skill-modal-label" aria-hidden="true">
         <div class="modal-dialog modal-lg">

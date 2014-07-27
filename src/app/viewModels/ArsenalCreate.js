@@ -30,6 +30,11 @@ define(function(require) {
         self.modalSkills = ko.observableArray(arsenalHelper.buildModalSkills(self.skills, true));
         self.skillMeta = ko.observable('');
 
+        self.arsenalSkills.subscribe(function(changedArsenal) {
+            
+            arsenalHelper.updateChart(changedArsenal);
+        });
+
         self.randAura = ko.observable(15);
         self.randAttack = ko.observable();
         self.randDefense = ko.observable();

@@ -13,6 +13,11 @@ define(function(require) {
         arsenalHelper.initMetaPopovers();
 
         self.arsenalSkills = arsenalHelper.buildArsenalSkills(dto.data.arsenal, dto.data.skills);
+        
+        self.arsenalSkills.subscribe(function(changedArsenal) {
+            
+            arsenalHelper.updateChart(changedArsenal);
+        });
 
         self.author = dto.data.arsenal.author;
         self.created_date = dto.data.arsenal.created_date;

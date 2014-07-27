@@ -5,6 +5,32 @@ define(function(require) {
 
     var ko = require('knockout');
 
+    var updateChart = function(arsenalSkills) {
+        
+        var arsenalCosts = [];
+
+        _(arsenalSkills).forEach(function(arsenalGroup) {
+
+            _(arsenalGroup).forEach(function(arsenalSkill) {
+                
+                if (arsenalSkill().skill.type !== 'Aura') {
+                    arsenalCosts.push(arsenalSkill().skill.cost);
+                }
+            });
+        });
+        
+        var arsenalCostCounts = _.countBy(arsenalCosts, function(num) { return num; });
+                
+        var maxValue = _.max(_.values(arsenalCostCounts));
+
+        $(".bar").each(function(index) {
+            var height = arsenalCostCounts[index] / maxValue * 100;
+            $(this).attr('title', arsenalCostCounts[index]).animate({height: height}, 600);
+        });
+
+        $('.bar-chart .bar').tooltip();
+    };
+
     var sortSkills = function(modalSkills, params) {
 
         var skills = [];
@@ -245,7 +271,7 @@ define(function(require) {
     };
 
     var initMetaPopovers = function() {
-        
+
         var popOverSettings = {
             placement: 'bottom',
             container: '#shell',
@@ -264,6 +290,7 @@ define(function(require) {
         buildArsenalSkills: buildArsenalSkills,
         arsenalSort: arsenalSort,
         sortSkills: sortSkills,
-        initMetaPopovers: initMetaPopovers
+        initMetaPopovers: initMetaPopovers,
+        updateChart: updateChart
     };
 });
