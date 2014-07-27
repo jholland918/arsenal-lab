@@ -113,7 +113,7 @@ define(function(require) {
 
         self.schoolIsVisible = function(school) {
 
-            return self['isVisible' + school.trim()]();
+            return self['isVisible' + school]();
         };
 
         self.isVisibleFaith = ko.observable(true);

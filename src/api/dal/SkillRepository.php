@@ -3,7 +3,7 @@
 class SkillRepository extends Repository {
 
     public function getCount() {
-        
+
         try {
             $connection = $this->getConnection();
 
@@ -25,7 +25,9 @@ class SkillRepository extends Repository {
         try {
             $connection = $this->getConnection();
 
-            $statement = $connection->prepare(SkillSql::select());
+            $orderBy = " ORDER BY CASE school WHEN 'Psycho' THEN 0 WHEN 'Optical' THEN 1 WHEN 'Nature' THEN 2 WHEN 'Ki' THEN 3 WHEN 'Faith' THEN 4 END, skill_number";
+
+            $statement = $connection->prepare(SkillSql::select() . $orderBy);
             $statement->setFetchMode(PDO::FETCH_CLASS, 'Skill');
             $statement->execute();
 

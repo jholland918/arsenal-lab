@@ -6,7 +6,7 @@ define(function(require) {
     var getAll = function(dto) {
         
         return new RSVP.Promise(function(resolve, reject) {
-
+            
             var skills = store.get('skills');
 
             if (skills) {
