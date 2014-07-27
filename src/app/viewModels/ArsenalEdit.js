@@ -53,7 +53,7 @@ define(function(require) {
 
         self.sortClicked = function() {
 
-            var sortedArsenal = arsenalHelper.arsenalSort(self.arsenalSkills);
+            var sortedArsenal = arsenalHelper.arsenalSort(self.arsenalSkills());
 
             self.arsenalSkills(sortedArsenal);
         };
@@ -73,6 +73,7 @@ define(function(require) {
                 cssNames: 'btn btn-default btn-block skill ' + skill.type.toLowerCase() + ' ' + skill.school.toLowerCase()
             };
             self.arsenalSkills()[index1][index2](newArsenalSkill);
+            arsenalHelper.updateChart(self.arsenalSkills());
         };
 
         self.publishClicked = function() {

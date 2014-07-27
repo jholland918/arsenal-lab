@@ -34,7 +34,7 @@ define(function(require) {
             
             arsenalHelper.updateChart(changedArsenal);
         });
-
+        
         self.randAura = ko.observable(15);
         self.randAttack = ko.observable();
         self.randDefense = ko.observable();
@@ -95,6 +95,7 @@ define(function(require) {
             };
 
             self.arsenalSkills()[index1][index2](newArsenalSkill);
+            arsenalHelper.updateChart(self.arsenalSkills());
         };
 
         self.publishClicked = function() {

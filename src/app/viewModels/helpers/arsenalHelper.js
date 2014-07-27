@@ -19,13 +19,16 @@ define(function(require) {
             });
         });
         
+        //debugger;
+        
         var arsenalCostCounts = _.countBy(arsenalCosts, function(num) { return num; });
                 
         var maxValue = _.max(_.values(arsenalCostCounts));
 
         $(".bar").each(function(index) {
+            //debugger;
             var height = arsenalCostCounts[index] / maxValue * 100;
-            $(this).attr('title', arsenalCostCounts[index]).animate({height: height}, 600);
+            $(this).attr('data-original-title', arsenalCostCounts[index]).animate({height: height}, 600);
         });
 
         $('.bar-chart .bar').tooltip();
