@@ -27,6 +27,8 @@ define(function(require) {
         self.modalSkills = ko.observableArray(arsenalHelper.buildModalSkills(skills, true));
         self.skillMeta = ko.observable('');
         
+        arsenalHelper.updateChart(self.arsenalSkills());
+        
         self.arsenalSkills.subscribe(function(changedArsenal) {
             
             arsenalHelper.updateChart(changedArsenal);

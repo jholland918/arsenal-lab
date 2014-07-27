@@ -7,13 +7,15 @@ define(function(require) {
     var arsenalHelper = require('arsenal-lab/app/viewModels/helpers/arsenalHelper');
 
     var ArsenalShow = function(dto) {
-        
+       
         var self = this;
         
         arsenalHelper.initMetaPopovers();
 
-        self.arsenalSkills = arsenalHelper.buildArsenalSkills(dto.data.arsenal, dto.data.skills);
+        self.arsenalSkills = ko.observableArray(arsenalHelper.buildArsenalSkills(dto.data.arsenal, dto.data.skills));
         
+        arsenalHelper.updateChart(self.arsenalSkills());
+
         self.arsenalSkills.subscribe(function(changedArsenal) {
             
             arsenalHelper.updateChart(changedArsenal);
