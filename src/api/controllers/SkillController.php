@@ -23,5 +23,6 @@ class SkillController extends Controller {
         ];
         
         $this->respond($response);
+        //$this->respond($skills);
     }
 }

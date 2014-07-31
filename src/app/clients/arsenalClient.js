@@ -1,11 +1,11 @@
 /*global define */
 'use strict';
 
-define(function(require) {
+define(["rsvp"], function(rsvp) {
 
     var getAll = function(dto) {
 
-        return new RSVP.Promise(function(resolve, reject) {
+        return new rsvp.Promise(function(resolve, reject) {
 
             $.ajax({
                 type: 'GET',
@@ -28,7 +28,7 @@ define(function(require) {
 
     var getById = function(dto) {
         
-        return new RSVP.Promise(function(resolve, reject) {
+        return new rsvp.Promise(function(resolve, reject) {
 
             $.ajax({
                 type: 'GET',
@@ -51,7 +51,7 @@ define(function(require) {
 
     var save = function(dto) {
 
-        return new RSVP.Promise(function(resolve, reject) {
+        return new rsvp.Promise(function(resolve, reject) {
 
             $.ajax({
                 type: 'POST',

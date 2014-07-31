@@ -1,0 +1,143 @@
+<!-- Skill Modal -->
+<div class="modal fade" id="skill-modal" tabindex="-1" role="dialog" aria-labelledby="skill-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <div id="school-toggle" class="btn-group" data-toggle="buttons">
+                    <label data-bind="click: toggleVisiblePsycho" class="btn btn-primary active">
+                        <input data-bind="checked: isVisiblePsycho" type="checkbox"> <img src="/arsenal-lab/img/skills/psycho_26.png" alt="Psycho">
+                    </label>
+                    <label data-bind="click: toggleVisibleOptical" class="btn btn-primary active">
+                        <input data-bind="checked: isVisibleOptical" type="checkbox"> <img src="/arsenal-lab/img/skills/optical_26.png" alt="optical">
+                    </label>
+                    <label data-bind="click: toggleVisibleNature" class="btn btn-primary active">
+                        <input data-bind="checked: isVisibleNature" type="checkbox"> <img src="/arsenal-lab/img/skills/nature_26.png" alt="nature">
+                    </label>
+                    <label data-bind="click: toggleVisibleKi" class="btn btn-primary active">
+                        <input data-bind="checked: isVisibleKi" type="checkbox"> <img src="/arsenal-lab/img/skills/ki_26.png" alt="ki">
+                    </label>
+                    <label data-bind="click: toggleVisibleFaith" class="btn btn-primary active">
+                        <input data-bind="checked: isVisibleFaith" type="checkbox"> <img src="/arsenal-lab/img/skills/faith_26.png" alt="faith">
+                    </label>
+                </div>
+            </div>
+            <div class="modal-body container-fluid">
+                <div class="row">
+                    <div class="col-md-12 offset-bottom-md">
+                        <ul id="myTab" class="nav nav-pills pull-left" role="tablist">
+                            <li class="active"><a href="#aura" role="tab" data-toggle="tab">Aura</a></li>
+                            <li class=""><a href="#attack" role="tab" data-toggle="tab">Attack</a></li>
+                            <li class=""><a href="#defense" role="tab" data-toggle="tab">Defense</a></li>
+                            <li class=""><a href="#erase" role="tab" data-toggle="tab">Erase</a></li>
+                            <li class=""><a href="#status" role="tab" data-toggle="tab">Status</a></li>
+                            <li class=""><a href="#special" role="tab" data-toggle="tab">Special</a></li>
+                            <li class=""><a href="#environmental" role="tab" data-toggle="tab">Environmental</a></li>
+                        </ul>
+                        <!-- sort-popover -->
+                        <div class="sort-popover"> 
+                            <button type="button" class="btn btn-default pull-right trigger" data-placement="left">Sort</button>
+                            <div class="head hide">Sort</div>
+                            <div class="content hide">
+                                <form>
+                                    <div class="form-group">
+                                        <select id="skill-sort-1">
+                                            <option value="none">None</option>
+                                            <option value="cost">Cost</option>
+                                            <option value="skill_number">ID</option>
+                                            <option value="name">Name</option>
+                                            <option value="use">Number of uses</option>
+                                            <option value="distance">Range</option>
+                                            <option value="rarity">Rarity</option>
+                                            <option value="school">School</option>
+                                            <option value="str_def">Strength</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <select id="skill-sort-2">
+                                            <option value="none">None</option>
+                                            <option value="cost">Cost</option>
+                                            <option value="skill_number">ID</option>
+                                            <option value="name">Name</option>
+                                            <option value="use">Number of uses</option>
+                                            <option value="distance">Range</option>
+                                            <option value="rarity">Rarity</option>
+                                            <option value="school">School</option>
+                                            <option value="str_def">Strength</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <select id="skill-sort-3">
+                                            <option value="none">None</option>
+                                            <option value="cost">Cost</option>
+                                            <option value="skill_number">ID</option>
+                                            <option value="name">Name</option>
+                                            <option value="use">Number of uses</option>
+                                            <option value="distance">Range</option>
+                                            <option value="rarity">Rarity</option>
+                                            <option value="school">School</option>
+                                            <option value="str_def">Strength</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-default btn-block">Submit</button>
+                                </form>
+                            </div>
+                            <div class="footer hide">test</div>
+                        </div>
+                        <!-- /sort-popover -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane fade active in" id="aura">
+                                <ul data-bind="foreach: modalSkills()[0]" class="skill-list list-unstyled">
+                                    <li><a data-bind="text: name, click: $parent.skillClicked, event: { mouseover: $parent.skillMouseOver }, attr: { class: cssNames }" role="button" href="#" ></a></li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="attack">
+                                <ul data-bind="foreach: modalSkills()[1]" class="skill-list list-unstyled">
+                                    <li><a data-bind="text: name, click: $parent.skillClicked, event: { mouseover: $parent.skillMouseOver }, attr: { class: cssNames }, visible: $parent.schoolIsVisible(school)" role="button" href="#" ></a></li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="defense">
+                                <ul data-bind="foreach: modalSkills()[2]" class="skill-list list-unstyled">
+                                    <li><a data-bind="text: name, click: $parent.skillClicked, event: { mouseover: $parent.skillMouseOver }, attr: { class: cssNames }, visible: $parent.schoolIsVisible(school)" role="button" href="#" ></a></li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="erase">
+                                <ul data-bind="foreach: modalSkills()[3]" class="skill-list list-unstyled">
+                                    <li><a data-bind="text: name, click: $parent.skillClicked, event: { mouseover: $parent.skillMouseOver }, attr: { class: cssNames }, visible: $parent.schoolIsVisible(school)" role="button" href="#" ></a></li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="status">
+                                <ul data-bind="foreach: modalSkills()[4]" class="skill-list list-unstyled">
+                                    <li><a data-bind="text: name, click: $parent.skillClicked, event: { mouseover: $parent.skillMouseOver }, attr: { class: cssNames }, visible: $parent.schoolIsVisible(school)" role="button" href="#" ></a></li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="special">
+                                <ul data-bind="foreach: modalSkills()[5]" class="skill-list list-unstyled">
+                                    <li><a data-bind="text: name, click: $parent.skillClicked, event: { mouseover: $parent.skillMouseOver }, attr: { class: cssNames }, visible: $parent.schoolIsVisible(school)" role="button" href="#" ></a></li>
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="environmental">
+                                <ul data-bind="foreach: modalSkills()[6]" class="skill-list list-unstyled">
+                                    <li><a data-bind="text: name, click: $parent.skillClicked, event: { mouseover: $parent.skillMouseOver }, attr: { class: cssNames }, visible: $parent.schoolIsVisible(school)" role="button" href="#" ></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div data-bind="html: skillMeta"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span data-bind="text: skillSelected().name" id="selected-skill" class="label label-default"></span>
+                <span id="selected-skill-divider">|</span>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button data-bind="click: confirmClicked" type="button" class="btn btn-primary">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>

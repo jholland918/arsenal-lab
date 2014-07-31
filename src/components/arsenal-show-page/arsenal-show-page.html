@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-8 page-header">
+        <h1>ARSENAL: <span data-bind="text: name"></span> <small>by <span data-bind="text: author"></span></small></h1>
+    </div>
+    <div class="col-md-4">
+        <cost-chart></cost-chart>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h4><a data-bind="text: url, attr: { href: url  }" href="#" target="_blank"></a></h4>
+                <p data-bind="text: description"></p>
+                <p>Created on <span data-bind="text: created_date"></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<arsenal-list params="mode: 'show', arsenalId: arsenalId"></arsenal-list>
+
+<div class="row">
+    <div class="col-md-4">
+        <a data-bind="attr: { href: url }" class="btn btn-primary btn-md btn-block offset-bottom-md" role="button" href="#" >Edit</a>
+    </div>
+</div>

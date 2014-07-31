@@ -1,19 +1,19 @@
 /*global define */
 'use strict';
 
-define(function(require) {
+define(["rsvp", "store"], function(rsvp, store) {
 
     var getAll = function(dto) {
         
-        return new RSVP.Promise(function(resolve, reject) {
+        return new rsvp.Promise(function(resolve, reject) {
             
             var skills = store.get('skills');
 
-            if (skills) {
-                dto.data.skills = skills;
-                resolve(dto);
-                return;
-            }
+//            if (skills) {
+//                dto.data.skills = skills;
+//                resolve(dto);
+//                return;
+//            }
 
             $.ajax({
                 type: 'GET',

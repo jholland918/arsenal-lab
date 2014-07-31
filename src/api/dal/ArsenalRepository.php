@@ -1,12 +1,12 @@
 <?php
 
 class ArsenalRepository extends Repository {
-
+    
     public function getAll() {
 
         try {
             $connection = $this->getConnection();
-
+            
             $sql = ArsenalSql::select();
 
             $statement = $connection->prepare(ArsenalSql::select());
@@ -26,19 +26,19 @@ class ArsenalRepository extends Repository {
             echo $e->getMessage();
         }
     }
-
+    
     public function getById($id) {
 
         try {
             $connection = $this->getConnection();
-
+            
             $sql = ArsenalSql::select();
 
             $statement = $connection->prepare(ArsenalSql::select() . ' WHERE id = :id');
             $statement->setFetchMode(PDO::FETCH_CLASS, 'Arsenal');
             $statement->bindParam(':id', $id, PDO::PARAM_INT);
             $statement->execute();
-
+        
             $record = $statement->fetch();
             if ($statement->rowCount() > 0) {
                 $record->escape();
@@ -51,7 +51,7 @@ class ArsenalRepository extends Repository {
             echo $e->getMessage();
         }
     }
-
+    
     public function insert(Arsenal $arsenal) {
 
         try {
@@ -73,5 +73,5 @@ class ArsenalRepository extends Repository {
             echo $e->getMessage();
         }
     }
-
+    
 }

@@ -1,0 +1,99 @@
+<!-- Random Modal -->
+<div class="modal fade" id="random-modal" tabindex="-1" role="dialog" aria-labelledby="random-modal-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="random-form">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Generate Random Arsenal</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <h4>Case School Size</h4>
+                        <label class="radio-inline">
+                            <input type="radio" name="case" value="0" checked> Random
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="case" value="1"> One
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="case" value="2"> Two
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="case" value="3"> Three
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <h4>Schools</h4>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="schools" value="Psycho" checked> Psycho
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="schools" value="Optical" checked> Optical
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="schools" value="Nature" checked> Nature
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="schools" value="Ki" checked> Ki
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="schools" value="Faith" checked> Faith
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <h4>Attack Range</h4>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="attack-range" value="all" checked> All
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="attack-range" value="mine" checked> Mine
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="attack-range" value="short" checked> Short
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="attack-range" value="medium" checked> Medium
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="attack-range" value="long" checked> Long
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <h4>Type Minimum <small>[ <span data-bind="text: randCount, css: { 'text-danger': randCount() > 30 }"></span> / 30 ] <span data-bind="style: { display: randCount() > 30 ? 'inline' : 'none' }" class="text-danger">exceeded max, must be 30 or under</span></small></h4>
+                        <span class="help-block">Enter minimum number for each type, leave blank to randomize.</span>
+                        <table id="type-min-table">
+                            <tr>
+                                <td><label for="rand-aura">Aura</label></td>
+                                <td><input data-bind="value: randAura" type="text" class="form-control" id="rand-aura" name="aura" placeholder="random"></td>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="rand-attack">Attack</label></td>
+                                <td><input data-bind="value: randAttack" type="text" class="form-control" id="rand-attack" name="attack" placeholder="random"></td>
+                                <td><label for="rand-defense">Defense</label></td>
+                                <td><input data-bind="value: randDefense" type="text" class="form-control" id="rand-defense" name="defense" placeholder="random"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="rand-environment">Environment</label></td>
+                                <td><input data-bind="value: randEnvironment" type="text" class="form-control" id="rand-environment" name="environment" placeholder="random"></td>
+                                <td><label for="rand-erase">Erase</label></td>
+                                <td><input data-bind="value: randErase" type="text" class="form-control" id="rand-erase" name="erase" placeholder="random"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="rand-special">Special</label></td>
+                                <td><input data-bind="value: randSpecial" type="text" class="form-control" id="rand-special" name="special" placeholder="random"></td>
+                                <td><label for="rand-status">Status</label></td>
+                                <td><input data-bind="value: randStatus" type="text" class="form-control" id="rand-status" name="status" placeholder="random"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a data-bind="click: randomExecuteClicked, css: { disabled: randCount() > 30 }" role="button" class="btn btn-primary">Execute</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

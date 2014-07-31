@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-md-8 page-header">
+        <h1>EDIT</h1>
+    </div>
+    <div class="col-md-4">
+        <cost-chart></cost-chart>
+    </div>
+</div>
+
+<arsenal-list params="mode: 'edit', arsenalId: arsenalId"></arsenal-list>
+
+<div class="row">
+    <div class="col-md-8">
+        <button data-bind="click: publishClicked " type="button" class="btn btn-primary btn-md btn-block offset-bottom-md">Publish</button>
+    </div>
+    <div class="col-md-4">
+        <button data-bind="click: sortClicked" type="button" class="btn btn-default btn-md btn-block">Sort</button>
+    </div>
+</div>
+
+<save-modal></save-modal>

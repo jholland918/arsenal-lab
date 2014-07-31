@@ -1,4 +1,8 @@
+.DS_Store
+node_modules/
+bower_modules/
 nbproject/
-src/bower_components/
-src/vendor
-src/api/vendor
+src/api/vendor/
+
+# Don't track build output
+dist/

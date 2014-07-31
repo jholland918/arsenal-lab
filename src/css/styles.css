@@ -1,0 +1,198 @@
+#page {
+	margin-top: 80px;
+}
+
+/* Basic layout stuff
+------------------------------------------------------------------------------*/
+.skill-list {
+    height: 325px;
+    overflow: auto; 
+}
+
+.offset-bottom-sm {
+    margin-bottom: 4px;
+}
+
+.offset-bottom-md {
+    margin-bottom: 8px;
+}
+
+.offset-bottom-lg {
+    margin-bottom: 12px;
+}
+
+#shell {
+    /* Make it easier to view arsenal popovers that display at the bottom of the page */
+    margin-bottom: 250px;  
+}
+
+.arsenal-list li {
+    margin-bottom: 6px;
+}
+
+#selected-skill {
+    font-size: 20px;
+}
+
+#selected-skill-divider {
+    padding: 0 10px;
+    font-size: 20px;
+}
+
+#type-min-table td {
+    padding: 4px;
+}
+
+.skill-table  th,
+.skill-table  td{
+    width: 25%;
+    white-space: nowrap;
+}
+
+#skill-sort-1,
+#skill-sort-2,
+#skill-sort-3 {
+    color: #222;
+}
+
+/* Main Banner
+------------------------------------------------------------------------------*/
+.main-banner {
+    background-image: url("/arsenal-lab/img/banner3.png"); 
+}
+
+/* Skill Default
+------------------------------------------------------------------------------*/
+.skill {
+    background-color: #6AB486;
+    background-repeat:no-repeat;
+    background-position: right 10px center;
+    color: #262125;
+    font-weight: bold;
+    text-align: left;
+}
+
+.skill:hover {
+    color: #262125;
+}
+
+/* Skill types
+------------------------------------------------------------------------------*/
+
+.aura {
+    background-color: #6AB486;
+    background-image: url('/arsenal-lab/img/skills/aura_26.png');
+}
+
+.aura:hover {
+    background-color: #8AD5AC;
+}
+
+.attack {
+    background-color: #FF601F;
+}
+
+.attack:hover  {
+    background-color: #FF7D4A;
+}
+
+.defense {
+    background-color: #4167F9;
+}
+
+.defense:hover  {
+    background-color: #6787FA;
+}
+
+.erase {
+    background-color: #B246F3;
+}
+
+.erase:hover  {
+    background-color: #C36EF6;
+}
+
+.status {
+    background-color: #62EC3E;
+}
+
+.status:hover  {
+    background-color: #82F264;
+}
+
+.environment {
+    background-color: #33EDE5;
+}
+
+.environment:hover  {
+    background-color: #5CF2EC;
+}
+
+.special {
+    background-color: #DDE332;
+}
+
+.special:hover  {
+    background-color: #F1F759;
+}
+
+/* Skill schools
+------------------------------------------------------------------------------*/
+.nature {
+    background-image: url('/arsenal-lab/img/skills/nature_26.png') !important;
+}
+
+.optical {
+    background-image: url('/arsenal-lab/img/skills/optical_26.png') !important;
+}
+
+.faith {
+    background-image: url('/arsenal-lab/img/skills/faith_26.png') !important;
+}
+
+.psycho {
+    background-image: url('/arsenal-lab/img/skills/psycho_26.png') !important;
+}
+
+.ki {
+    background-image: url('/arsenal-lab/img/skills/ki_26.png') !important;
+}
+
+/* School Toggle Buttons
+------------------------------------------------------------------------------*/
+#school-toggle input {
+    text-align: center;
+    width:80px;
+}
+
+#school-toggle .btn-primary:hover {
+    background-color: #375a7f;
+}
+
+/* Bar chart
+------------------------------------------------------------------------------*/
+.bar-chart {
+    width: 240px;
+}
+
+.bar-chart th,
+.bar-chart td {
+    vertical-align: bottom;
+    padding: 0 2px;
+}
+
+.bar-chart th {
+    text-align: center;
+}
+
+.bar-chart td {
+    height: 100px;
+}
+
+.bar {
+    width: 18px;
+    background-color: #464545;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
