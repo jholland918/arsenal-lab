@@ -1,11 +1,12 @@
 #page {
-	margin-top: 80px;
+    margin-top: 80px;
 }
 
 /* Basic layout stuff
 ------------------------------------------------------------------------------*/
 .skill-list {
     height: 325px;
+    margin-bottom: 0;
     overflow: auto; 
 }
 
@@ -41,6 +42,27 @@
 
 #type-min-table td {
     padding: 4px;
+}
+
+.skill-preview {
+    width:100%;
+    height:177px;
+}
+
+.skill-preview img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.skill-id-rarity {
+    width: 110px;
+    float: right;
+}
+
+.skill-id {
+    width: 30px;
+    display: inline-block;
 }
 
 .skill-table  th,

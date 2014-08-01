@@ -16,6 +16,8 @@ define(function(require) {
         self.modalSkills = ko.observableArray([]);
 
         self.arsenalSkill = null;
+        
+        self.skillPreview = ko.observable();
 
         $(document).on("arsenalSkillClicked", function(event, params) {
 
@@ -24,13 +26,11 @@ define(function(require) {
             self.arsenalSkill = params.arsenalSkill;
         });
 
-        self.confirmClicked = function() {
-
+        self.confirmClicked = function(data, event) {
+            
             $('#skill-modal').modal('hide');
 
-            $(document).trigger("skillConfirmClicked", {skillSelected: self.skillSelected(), arsenalSkill: self.arsenalSkill});
-
-            //notnow//arsenalHelper.updateChart(self.arsenalSkills());
+            $(document).trigger("skillConfirmClicked", {skillSelected: self.skillSelected(), arsenalSkill: self.arsenalSkill, quantity: data});
         };
 
         self.isVisibleFaith = ko.observable(true);
@@ -61,9 +61,19 @@ define(function(require) {
         self.skillClicked = function(skill) {
 
             self.skillSelected(skill);
+            
+            var src = 'http://s3.amazonaws.com/PhantomDusted/skills/' + arsenalHelper.padNumber(skill.skill_number, 3) + '.gif';
+            var img = '<img src="' + src + '" alt="Skill Preview" height="173" width="300">'
+            
+            self.skillPreview(img);
         };
 
         self.skillMouseOver = function(skill) {
+            
+            if (skill.skill_number !== self.skillSelected().skill_number) {
+                self.skillPreview('');
+            }
+            
             self.skillMeta(skill.meta);
         };
 

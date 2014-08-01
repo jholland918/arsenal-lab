@@ -6,7 +6,7 @@ define(function(require) {
     var ko = require('knockout');
 
     var updateChart = function(arsenalSkills) {
-        
+
         var arsenalCosts = [];
 
         _(arsenalSkills).forEach(function(arsenalGroup) {
@@ -125,7 +125,7 @@ define(function(require) {
         if (init === true) {
             _(skills).forEach(function(skill) {
                 skill.cssNames = 'btn btn-default btn-block skill ' + skill.type.toLowerCase() + ' ' + skill.school.toLowerCase();
-                skill.meta = buildSkillMetaItem(skill);
+                skill.meta = buildSkillMetaItem(skill, true);
                 modalSkills[typeIndex[skill.type]].push(skill);
             });
         } else {
@@ -137,7 +137,7 @@ define(function(require) {
         return modalSkills;
     };
 
-    var buildSkillMetaItem = function(skill) {
+    var buildSkillMetaItem = function(skill, includeSkillPreview) {
         var html = '';
 
         var skillUse = '&infin;';
@@ -171,24 +171,14 @@ define(function(require) {
                 break;
         }
 
+        var skillNumber = padNumber(skill.skill_number, 3);
+
         html += '<div class="panel panel-default">';
-        html += '<div class="panel-heading">' + skill.name + '</div>';
+        html += '<div class="panel-heading">' + skill.name + ' <span class="skill-id-rarity"><span class="skill-id" title="ID">' + skillNumber + '</span> <span title="Rarity">' + skillRarity + '</span></span></div>';
         html += '<div class="panel-body">';
         html += '<p class="skill-stats">COST ' + skill.cost + strDef + ' @ ' + skillUse + ' ' + skill.distance + '</p>';
         html += '<p class="skill-desc">' + skill.skill_text + '</p>';
-        html += '</div>';
-        html += '</div>';
-        html += '<div class="skill-info"><table class="table table-condensed table-hover skill-table">';
-        html += '<tr><th>ID</th><td>: ' + skill.skill_number + '</td>';
-        html += '<th>Rarity</th><td>: ' + skillRarity + '</td></tr>';
-        html += '</table>';
-
-        if (skill.notes) {
-            html += '<p>' + skill.notes + '</p>';
-        }
-
         html += '</div></div>';
-        html += '</div>';
 
         return html;
     };
@@ -205,7 +195,7 @@ define(function(require) {
                 return obj.id === item.id;
             });
 
-            skill.meta = buildSkillMetaItem(skill);
+            skill.meta = buildSkillMetaItem(skill, false);
 
             var arsenalSkill = {
                 index1: item.ix1,
@@ -219,9 +209,8 @@ define(function(require) {
 
         return arsenalSkills;
     };
-
-    var arsenalSort = function(arsenalSkills) {
-
+    
+    var extractArsenalSkills = function(arsenalSkills) {
         var skills = [];
 
         _(arsenalSkills).forEach(function(arsenalGroup) {
@@ -231,6 +220,13 @@ define(function(require) {
                 skills.push(arsenalSkill().skill);
             });
         });
+        
+        return skills;
+    };
+
+    var arsenalSort = function(arsenalSkills) {
+
+        var skills = extractArsenalSkills(arsenalSkills);
 
         var typeSort = {
             Attack: 1,
@@ -305,8 +301,8 @@ define(function(require) {
             var skill = _.find(skills, function(obj) {
                 return obj.id === skillId;
             });
-            
-            skill.meta = buildSkillMetaItem(skill);
+
+            skill.meta = buildSkillMetaItem(skill, false);
 
             var arsenalSkill = {
                 index1: index1,
@@ -321,6 +317,13 @@ define(function(require) {
         return arsenalSkills;
     };
 
+
+    var padNumber = function(number, pad) {
+        number = parseInt(number, 10);
+        var N = Math.pow(10, pad);
+        return number < N ? ("" + (N + number)).slice(1) : "" + number;
+    }
+
     return {
         buildArsenalConfig: buildArsenalConfig,
         buildModalSkills: buildModalSkills,
@@ -329,6 +332,8 @@ define(function(require) {
         sortSkills: sortSkills,
         initMetaPopovers: initMetaPopovers,
         updateChart: updateChart,
-        buildNewArsenalSkillsById: buildNewArsenalSkillsById
+        buildNewArsenalSkillsById: buildNewArsenalSkillsById,
+        padNumber: padNumber,
+        extractArsenalSkills: extractArsenalSkills
     };
 });

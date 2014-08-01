@@ -129,6 +129,7 @@
                     </div>
                     <div class="col-md-6">
                         <div data-bind="html: skillMeta"></div>
+                        <div data-bind="html: skillPreview" class="skill-preview"></div>
                     </div>
                 </div>
             </div>
@@ -136,7 +137,21 @@
                 <span data-bind="text: skillSelected().name" id="selected-skill" class="label label-default"></span>
                 <span id="selected-skill-divider">|</span>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <!--
                 <button data-bind="click: confirmClicked" type="button" class="btn btn-primary">Confirm</button>
+                -->
+                <!-- Split button -->
+                <div class="btn-group">
+                    <button data-bind="click: confirmClicked.bind($data, 1)" type="button" class="btn btn-primary">Confirm 1x</button>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a data-bind="click: confirmClicked.bind($data, 2)" href="#">Confirm 2x</a></li>
+                        <li><a data-bind="click: confirmClicked.bind($data, 3)" href="#">Confirm 3x</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
