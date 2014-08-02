@@ -1,9 +1,10 @@
 .DS_Store
+*.sqlite3
 node_modules/
 bower_modules/
 nbproject/
 src/api/vendor/
-*.sqlite3
+
 
 # Don't track build output
 dist/
