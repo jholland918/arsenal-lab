@@ -9,11 +9,11 @@ define(["rsvp", "store"], function(rsvp, store) {
             
             var skills = store.get('skills');
 
-//            if (skills) {
-//                dto.data.skills = skills;
-//                resolve(dto);
-//                return;
-//            }
+            if (skills) {
+                dto.data.skills = skills;
+                resolve(dto);
+                return;
+            }
 
             $.ajax({
                 type: 'GET',

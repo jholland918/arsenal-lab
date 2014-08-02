@@ -3,7 +3,8 @@ define(function(require) {
     var ko = require('knockout');
     var templateMarkup = require('text!./skills-modal.html');
     var skillClient = require('/../app/clients/skillClient.js');
-    var arsenalHelper = require('/../app/helpers/arsenalHelper.js');
+    var skillsHelper = require('/../app/lib/skillsHelper.js');
+    var util = require('/../app/lib/util.js');
 
     function SkillsModal(params) {
 
@@ -62,7 +63,7 @@ define(function(require) {
 
             self.skillSelected(skill);
             
-            var src = 'http://s3.amazonaws.com/PhantomDusted/skills/' + arsenalHelper.padNumber(skill.skill_number, 3) + '.gif';
+            var src = 'http://s3.amazonaws.com/PhantomDusted/skills/' + util.padNumber(skill.skill_number, 3) + '.gif';
             var img = '<img src="' + src + '" alt="Skill Preview" height="173" width="300">'
             
             self.skillPreview(img);
@@ -110,7 +111,7 @@ define(function(require) {
 
         self.skillSelected(self.skills[0]);
 
-        self.modalSkills(arsenalHelper.buildModalSkills(self.skills, true));
+        self.modalSkills(skillsHelper.buildModalSkills(self.skills, true));
     };
 
     var bindSortPopover = function(self) {
@@ -147,7 +148,7 @@ define(function(require) {
                 params.push(sort3);
             }
 
-            var sortedModalSkills = arsenalHelper.sortSkills(self.modalSkills, params);
+            var sortedModalSkills = skillsHelper.sortSkills(self.modalSkills, params);
 
             self.modalSkills(sortedModalSkills);
         });

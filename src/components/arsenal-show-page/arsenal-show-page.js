@@ -4,7 +4,6 @@ define(function(require) {
     var templateMarkup = require('text!./arsenal-show-page.html');
     var skillClient = require('/../app/clients/skillClient.js');
     var arsenalClient = require('/../app/clients/arsenalClient.js');
-    var arsenalHelper = require('/../app/helpers/arsenalHelper.js');
 
     function ArsenalShowPage(params) {
 

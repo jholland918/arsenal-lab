@@ -4,16 +4,17 @@ define(function(require) {
     var templateMarkup = require('text!./arsenal-list.html');
     var skillClient = require('/../app/clients/skillClient.js');
     var arsenalClient = require('/../app/clients/arsenalClient.js');
-    var arsenalHelper = require('/../app/helpers/arsenalHelper.js');
-    var arsenalRandomizer = require('/../app/helpers/arsenalRandomizer.js');
+    var arsenalHelper = require('/../app/lib/arsenalHelper.js');
+    var arsenalConverter = require('/../app/lib/arsenalConverter.js');
+    var arsenalRandomizer = require('/../app/lib/arsenalRandomizer.js');
 
     function ArsenalList(params) {
 
         var self = this;
         self.skills = null;
-        self.arsenalSkills = ko.observableArray();
+        self.arsenalItems = ko.observableArray();
 
-        self.arsenalSkills.subscribe(function(changedArsenal) {
+        self.arsenalItems.subscribe(function(changedArsenal) {
 
             arsenalHelper.updateChart(changedArsenal);
         });
@@ -25,7 +26,7 @@ define(function(require) {
             var payload = params.saveFormData;
             payload.push({
                 "name": "config",
-                "value": arsenalHelper.buildArsenalConfig(self.arsenalSkills())
+                "value": arsenalConverter.buildArsenalConfig(self.arsenalItems())
             });
             var dto = {
                 lastInsertId: null,
@@ -45,16 +46,16 @@ define(function(require) {
         };
 
         $(document).on("arsenalSortClicked", function(event) {
-            var sortedArsenal = arsenalHelper.arsenalSort(self.arsenalSkills());
-            self.arsenalSkills(sortedArsenal);
+            var sortedArsenal = arsenalHelper.arsenalSort(self.arsenalItems());
+            self.arsenalItems(sortedArsenal);
         });
 
         $(document).on("randomFormSubmitted", function(event, params) {
 
             var randomArsenal = arsenalRandomizer.execute(self.skills, params.randomFormData);
-            var newArsenalSkills = arsenalHelper.buildNewArsenalSkillsById(randomArsenal, self.skills);
-            var sortedArsenal = arsenalHelper.arsenalSort(newArsenalSkills);
-            self.arsenalSkills(sortedArsenal);
+            var newArsenal = arsenalConverter.buildNewArsenalById(randomArsenal, self.skills);
+            var sortedArsenal = arsenalHelper.arsenalSort(newArsenal);
+            self.arsenalItems(sortedArsenal);
         });
 
         if (params.mode === 'show') {
@@ -119,10 +120,10 @@ define(function(require) {
                     cssNames: 'btn btn-default btn-block skill ' + skillSelected.type.toLowerCase() + ' ' + skillSelected.school.toLowerCase()
                 };
 
-                self.arsenalSkills()[index1][index2](newArsenalSkill);
+                self.arsenalItems()[index1][index2](newArsenalSkill);
             }
 
-            arsenalHelper.updateChart(self.arsenalSkills());
+            arsenalHelper.updateChart(self.arsenalItems());
         };
 
 
@@ -146,7 +147,7 @@ define(function(require) {
 
                     for (var ix2 = ix2Init; ix2 < 10; ix2++) {
 
-                        if (self.arsenalSkills()[ix1][ix2]().skill.type === 'Aura') {
+                        if (self.arsenalItems()[ix1][ix2]().skill.type === 'Aura') {
                             result.success = true;
                             result.index1 = ix1;
                             result.index2 = ix2;
@@ -168,7 +169,7 @@ define(function(require) {
 
                     for (var ix2 = ix2Init; ix2 >= 0; ix2--) {
 
-                        if (self.arsenalSkills()[ix1][ix2]().skill.type === 'Aura') {
+                        if (self.arsenalItems()[ix1][ix2]().skill.type === 'Aura') {
                             result.success = true;
                             result.index1 = ix1;
                             result.index2 = ix2;
@@ -191,7 +192,7 @@ define(function(require) {
 
             var errors = [];
 
-            var skills = arsenalHelper.extractArsenalSkills(self.arsenalSkills());
+            var skills = arsenalHelper.extractArsenalSkills(self.arsenalItems());
 
             var originalSchools = _.without(_.uniq(_.pluck(skills, 'school')), '');
 
@@ -262,8 +263,8 @@ define(function(require) {
             arsenalClient.getById(dto)
                     .then(function(dto) {
 
-                        var arsenalSkills = arsenalHelper.buildArsenalSkills(dto.data.arsenal, self.skills);
-                        self.arsenalSkills(arsenalSkills);
+                        var arsenalItems = arsenalConverter.buildArsenal(dto.data.arsenal, self.skills);
+                        self.arsenalItems(arsenalItems);
                     })
                     .catch(function(error) {
                         alert(error);
@@ -271,8 +272,8 @@ define(function(require) {
         } else {
 
             var arsenal = initArsenal(self.skills);
-            var newArsenalSkills = buildNewArsenalSkills(arsenal, self.skills);
-            self.arsenalSkills(newArsenalSkills);
+            var newArsenal = arsenalConverter.buildNewArsenal(arsenal, self.skills);
+            self.arsenalItems(newArsenal);
         }
     };
 
@@ -305,37 +306,6 @@ define(function(require) {
         }
 
         return arsenal;
-    };
-
-    var buildNewArsenalSkills = function(arsenal, skills) {
-
-        var arsenalSkills = [[], [], []];
-
-        _(arsenal).forEach(function(skillIndex, index) {
-
-            var index1;
-
-            if (index >= 0 && index <= 9) {
-                index1 = 0;
-            } else if (index >= 10 && index <= 19) {
-                index1 = 1;
-            } else {
-                index1 = 2;
-            }
-
-            var skill = skills[skillIndex];
-
-            var arsenalSkill = {
-                index1: index1,
-                index2: arsenalSkills[index1].length,
-                skill: skill,
-                cssNames: 'btn btn-default btn-block skill ' + skill.type.toLowerCase() + ' ' + skill.school.toLowerCase()
-            };
-
-            arsenalSkills[index1].push(ko.observable(arsenalSkill));
-        });
-
-        return arsenalSkills;
     };
 
     return {viewModel: ArsenalList, template: templateMarkup};

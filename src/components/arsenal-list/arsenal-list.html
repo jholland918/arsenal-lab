@@ -1,16 +1,16 @@
 <div class="row">
     <div class="col-md-4">
-        <ul data-bind="foreach: arsenalSkills()[0]" class="arsenal-list list-unstyled">
+        <ul data-bind="foreach: arsenalItems()[0]" class="arsenal-list list-unstyled">
             <li><a data-bind="text: skill.name, click: $parent.arsenalSkillClicked, attr: { class: cssNames, 'data-content': skill.meta, rel: skill.type !== 'Aura' ? 'meta' : '' }" role="button" href="#" ></a></li>
         </ul>
     </div>
     <div class="col-md-4">
-        <ul data-bind="foreach: arsenalSkills()[1]" class="arsenal-list list-unstyled">
+        <ul data-bind="foreach: arsenalItems()[1]" class="arsenal-list list-unstyled">
             <li><a data-bind="text: skill.name, click: $parent.arsenalSkillClicked, attr: { class: cssNames, 'data-content': skill.meta, rel: skill.type !== 'Aura' ? 'meta' : '' }" role="button" href="#" ></a></li>
         </ul>
     </div>
     <div class="col-md-4">
-        <ul data-bind="foreach: arsenalSkills()[2]" class="arsenal-list list-unstyled">
+        <ul data-bind="foreach: arsenalItems()[2]" class="arsenal-list list-unstyled">
             <li><a data-bind="text: skill.name, click: $parent.arsenalSkillClicked, attr: { class: cssNames, 'data-content': skill.meta, rel: skill.type !== 'Aura' ? 'meta' : '' }" role="button" href="#" ></a></li>
         </ul>
     </div>

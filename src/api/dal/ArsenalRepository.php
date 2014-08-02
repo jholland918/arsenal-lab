@@ -6,8 +6,6 @@ class ArsenalRepository extends Repository {
 
         try {
             $connection = $this->getConnection();
-            
-            $sql = ArsenalSql::select();
 
             $statement = $connection->prepare(ArsenalSql::select());
             $statement->setFetchMode(PDO::FETCH_CLASS, 'Arsenal');
@@ -31,8 +29,6 @@ class ArsenalRepository extends Repository {
 
         try {
             $connection = $this->getConnection();
-            
-            $sql = ArsenalSql::select();
 
             $statement = $connection->prepare(ArsenalSql::select() . ' WHERE id = :id');
             $statement->setFetchMode(PDO::FETCH_CLASS, 'Arsenal');

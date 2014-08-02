@@ -1,15 +1,16 @@
 #page {
     margin-top: 80px;
+    
+    /* 
+    TODO: This is specific to pages that display arsenals so  maybe this eventually 
+    needs to be moved to a better selector. This is to make it easier to view 
+    arsenal popovers that display at the bottom of the page. 
+    */
+    margin-bottom: 250px;  
 }
 
 /* Basic layout stuff
 ------------------------------------------------------------------------------*/
-.skill-list {
-    height: 325px;
-    margin-bottom: 0;
-    overflow: auto; 
-}
-
 .offset-bottom-sm {
     margin-bottom: 4px;
 }
@@ -22,26 +23,35 @@
     margin-bottom: 12px;
 }
 
-#shell {
-    /* Make it easier to view arsenal popovers that display at the bottom of the page */
-    margin-bottom: 250px;  
+/* Main Banner
+------------------------------------------------------------------------------*/
+.main-banner {
+    background-image: url("/arsenal-lab/img/banner3.png"); 
 }
 
+/* Arsenal List
+------------------------------------------------------------------------------*/
 .arsenal-list li {
     margin-bottom: 6px;
 }
 
-#selected-skill {
-    font-size: 20px;
-}
-
-#selected-skill-divider {
-    padding: 0 10px;
-    font-size: 20px;
-}
+/* Random Modal
+------------------------------------------------------------------------------*/
 
 #type-min-table td {
     padding: 4px;
+}
+
+/* Skill Meta
+------------------------------------------------------------------------------*/
+.skill-id {
+    width: 30px;
+    display: inline-block;
+}
+
+.skill-id-rarity {
+    width: 110px;
+    float: right;
 }
 
 .skill-preview {
@@ -55,32 +65,29 @@
     margin-right: auto;
 }
 
-.skill-id-rarity {
-    width: 110px;
-    float: right;
+#selected-skill-divider {
+    padding: 0 10px;
+    font-size: 20px;
 }
 
-.skill-id {
-    width: 30px;
-    display: inline-block;
+/* Skill Modal
+------------------------------------------------------------------------------*/
+.skill-list {
+    height: 325px;
+    margin-bottom: 0;
+    overflow: auto; 
 }
 
-.skill-table  th,
-.skill-table  td{
-    width: 25%;
-    white-space: nowrap;
+#selected-skill {
+    font-size: 20px;
 }
 
+/* Skill Modal Sort Popover
+------------------------------------------------------------------------------*/
 #skill-sort-1,
 #skill-sort-2,
 #skill-sort-3 {
     color: #222;
-}
-
-/* Main Banner
-------------------------------------------------------------------------------*/
-.main-banner {
-    background-image: url("/arsenal-lab/img/banner3.png"); 
 }
 
 /* Skill Default
@@ -98,7 +105,7 @@
     color: #262125;
 }
 
-/* Skill types
+/* Skill Types
 ------------------------------------------------------------------------------*/
 
 .aura {
@@ -158,7 +165,7 @@
     background-color: #F1F759;
 }
 
-/* Skill schools
+/* Skill Schools
 ------------------------------------------------------------------------------*/
 .nature {
     background-image: url('/arsenal-lab/img/skills/nature_26.png') !important;
@@ -191,7 +198,7 @@
     background-color: #375a7f;
 }
 
-/* Bar chart
+/* Bar Chart
 ------------------------------------------------------------------------------*/
 .bar-chart {
     width: 240px;
