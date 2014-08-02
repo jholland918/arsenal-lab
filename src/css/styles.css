@@ -115,9 +115,13 @@
 /* Skill Types
 ------------------------------------------------------------------------------*/
 
+.aura,
+.aura:active {
+    background-image: url('/arsenal-lab/img/skills/aura_26.png');
+}
+
 .aura {
     background-color: #6AB486;
-    background-image: url('/arsenal-lab/img/skills/aura_26.png');
 }
 
 .aura:hover {

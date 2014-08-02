@@ -83,6 +83,7 @@ define(function(require) {
             if (_.has(self, 'isVisible' + school)) {
                 return self['isVisible' + school]();
             } else {
+                debugger;
                 return true;
             }
         };
