@@ -73,7 +73,10 @@ define(function(require) {
             var errors = validateSkillSelection(params);
 
             if (errors.length > 0) {
-                alert(errors.join('; '))
+                
+                var errorModal = $('#error-modal');
+                errorModal.find('.modal-body').html(errors.join('<br>'));               
+                errorModal.modal();
                 return;
             }
 
