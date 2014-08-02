@@ -12,13 +12,16 @@ define(function(require) {
         _(modalSkills()).forEach(function(skillGroup) {
 
             _(skillGroup).forEach(function(skill) {
+                
+                // Do parseInt here so it will sort numerically.
+                skill.skill_number = parseInt(skill.skill_number, 10) || 0;
 
                 skills.push(skill);
             });
         });
 
         var sortedSkills;
-
+        
         if (params.length === 1) {
 
             sortedSkills = _(skills).chain()
