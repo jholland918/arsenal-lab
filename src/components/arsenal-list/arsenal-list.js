@@ -24,14 +24,17 @@ define(function(require) {
         $(document).on("arsenalSaveClicked", function(event, params) {
 
             var payload = params.saveFormData;
+            
             payload.push({
                 "name": "config",
                 "value": arsenalConverter.buildArsenalConfig(self.arsenalItems())
             });
+            
             var dto = {
                 lastInsertId: null,
                 payload: payload
             };
+            
             arsenalClient.save(dto)
                     .then(self.updateAfterSave)
                     .catch(function(error) {

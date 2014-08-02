@@ -45,7 +45,7 @@ define(function(require) {
         self.author(dto.data.arsenal.author);
         self.created_date(dto.data.arsenal.created_date);
         self.description(dto.data.arsenal.description);
-        self.url(window.location.protocol + '//' + window.location.hostname + '/arsenal-lab/#/arsenal-edit/' + dto.data.arsenal.id);
+        self.url(window.location.protocol + '//' + window.location.hostname + '/arsenal-lab/#/arsenal-show/' + dto.data.arsenal.id);
         self.name(dto.data.arsenal.name);
     };
 

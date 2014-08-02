@@ -12,12 +12,12 @@ define(function(require) {
 
         self.skills = null;
 
-        self.skillSelected = ko.observable({name: ''});
+        self.skillSelected = ko.observable({id: -1, skill_number: -1});
 
         self.modalSkills = ko.observableArray([]);
 
         self.arsenalSkill = null;
-        
+
         self.skillPreview = ko.observable();
 
         $(document).on("arsenalSkillClicked", function(event, params) {
@@ -28,7 +28,7 @@ define(function(require) {
         });
 
         self.confirmClicked = function(data, event) {
-            
+
             $('#skill-modal').modal('hide');
 
             $(document).trigger("skillConfirmClicked", {skillSelected: self.skillSelected(), arsenalSkill: self.arsenalSkill, quantity: data});
@@ -59,22 +59,54 @@ define(function(require) {
             self.isVisiblePsycho(!self.isVisiblePsycho());
         };
 
-        self.skillClicked = function(skill) {
+        self.hasSkillSelected = false;
+        self.previousSkillButtonSelected = null;
 
-            self.skillSelected(skill);
-            
-            var src = 'http://s3.amazonaws.com/PhantomDusted/skills/' + util.padNumber(skill.skill_number, 3) + '.gif';
-            var img = '<img src="' + src + '" alt="Skill Preview" height="173" width="300">'
-            
-            self.skillPreview(img);
+        self.skillClicked = function(skill, event) {
+
+            var caller = event.target || event.srcElement;
+
+            var isTogglingSkill = (self.hasSkillSelected && skill.id === self.skillSelected().id);
+
+            if (isTogglingSkill) {
+
+                self.hasSkillSelected = false;
+                $(caller).removeClass('active');
+                self.skillSelected({id: -1, skill_number: -1});
+
+            } else {
+                var isSerialClicker = (self.hasSkillSelected && skill.id !== self.skillSelected().id);
+
+                if (isSerialClicker) {
+                    self.skillMeta(skill.meta);
+                    $(self.previousSkillButtonSelected).removeClass('active');
+                }
+
+                $(caller).addClass('active');
+                self.hasSkillSelected = true;
+
+                self.skillSelected(skill);
+
+                if (skill.type !== 'Aura') {
+                    var src = 'http://s3.amazonaws.com/PhantomDusted/skills/' + util.padNumber(skill.skill_number, 3) + '.gif';
+                    var img = '<img src="' + src + '" alt="Skill Preview" height="173" width="300">';
+                    self.skillPreview(img);
+                }
+
+                self.previousSkillButtonSelected = caller;
+            }
         };
 
         self.skillMouseOver = function(skill) {
-            
+
+            if (self.hasSkillSelected) {
+                return;
+            }
+
             if (skill.skill_number !== self.skillSelected().skill_number) {
                 self.skillPreview('');
             }
-            
+
             self.skillMeta(skill.meta);
         };
 
@@ -89,7 +121,7 @@ define(function(require) {
         };
 
         self.skillMeta = ko.observable('');
-        
+
         bindSortPopover(self);
 
         var dto = {
@@ -116,7 +148,7 @@ define(function(require) {
     };
 
     var bindSortPopover = function(self) {
-        
+
         $('.sort-popover>.trigger').popover({
             html: true,
             title: function() {

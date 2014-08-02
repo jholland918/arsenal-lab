@@ -1,6 +1,6 @@
 #page {
     margin-top: 80px;
-    
+
     /* 
     TODO: This is specific to pages that display arsenals so  maybe this eventually 
     needs to be moved to a better selector. This is to make it easier to view 
@@ -59,22 +59,18 @@
 .skill-id-rarity {
     width: 110px;
     float: right;
+    white-space: nowrap;
 }
 
-.skill-preview {
+#skill-preview {
     width:100%;
-    height:177px;
+    /*height:177px;*/
 }
 
-.skill-preview img {
+#skill-preview img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-}
-
-#selected-skill-divider {
-    padding: 0 10px;
-    font-size: 20px;
 }
 
 /* Skill Modal
@@ -83,10 +79,6 @@
     height: 325px;
     margin-bottom: 0;
     overflow: auto; 
-}
-
-#selected-skill {
-    font-size: 20px;
 }
 
 /* Skill Modal Sort Popover
@@ -116,7 +108,8 @@
 ------------------------------------------------------------------------------*/
 
 .aura,
-.aura:active {
+.aura:active,
+.aura.active {
     background-image: url('/arsenal-lab/img/skills/aura_26.png');
 }
 
@@ -128,12 +121,26 @@
     background-color: #8AD5AC;
 }
 
+.aura.active {
+    background-color: #429761;
+    -moz-box-shadow: inset 0 0 10px 4px #247B44;
+    -webkit-box-shadow: inset 0 0 10px 4px #247B44;
+    box-shadow: inset 0 0 10px 4px #247B44;
+}
+
 .attack {
     background-color: #FF601F;
 }
 
 .attack:hover  {
     background-color: #FF7D4A;
+}
+
+.attack.active {
+    background-color: #D73E01;
+    -moz-box-shadow: inset 0 0 10px 4px #A93000;
+    -webkit-box-shadow: inset 0 0 10px 4px #A93000;
+    box-shadow: inset 0 0 10px 4px #A93000;
 }
 
 .defense {
@@ -144,12 +151,26 @@
     background-color: #6787FA;
 }
 
+.defense.active {
+    background-color: #1B4AF6;
+    -moz-box-shadow: inset 0 0 10px 4px #0636E6;
+    -webkit-box-shadow: inset 0 0 10px 4px #0636E6;
+    box-shadow: inset 0 0 10px 4px #0636E6;
+}
+
 .erase {
     background-color: #B246F3;
 }
 
 .erase:hover  {
     background-color: #C36EF6;
+}
+
+.erase.active {
+    background-color: #9008E1;
+    -moz-box-shadow: inset 0 0 10px 4px #6E04AD;
+    -webkit-box-shadow: inset 0 0 10px 4px #6E04AD;
+    box-shadow: inset 0 0 10px 4px #6E04AD;
 }
 
 .status {
@@ -160,6 +181,13 @@
     background-color: #82F264;
 }
 
+.status.active {
+    background-color: #24AC00;
+    -moz-box-shadow: inset 0 0 10px 4px #1C8700;
+    -webkit-box-shadow: inset 0 0 10px 4px #1C8700;
+    box-shadow: inset 0 0 10px 4px #1C8700;
+}
+
 .environment {
     background-color: #33EDE5;
 }
@@ -168,12 +196,26 @@
     background-color: #5CF2EC;
 }
 
+.environment.active {
+    background-color: #00B8B1;
+    -moz-box-shadow: inset 0 0 10px 4px #00817C;
+    -webkit-box-shadow: inset 0 0 10px 4px #00817C;
+    box-shadow: inset 0 0 10px 4px #00817C;
+}
+
 .special {
     background-color: #DDE332;
 }
 
 .special:hover  {
     background-color: #F1F759;
+}
+
+.special.active {
+    background-color: #B9BF14;
+    -moz-box-shadow: inset 0 0 10px 4px #929802;
+    -webkit-box-shadow: inset 0 0 10px 4px #929802;
+    box-shadow: inset 0 0 10px 4px #929802;
 }
 
 /* Skill Schools
