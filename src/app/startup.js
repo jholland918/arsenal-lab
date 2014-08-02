@@ -19,8 +19,6 @@ define(['jquery', 'knockout', './router', 'bootstrap', 'knockout-projections'], 
 
   ko.components.register('random-modal', { require: 'components/random-modal/random-modal' });
 
-  ko.components.register('skill-meta', { require: 'components/skill-meta/skill-meta' });
-
   ko.components.register('skills-modal', { require: 'components/skills-modal/skills-modal' });
 
   ko.components.register('save-modal', { require: 'components/save-modal/save-modal' });

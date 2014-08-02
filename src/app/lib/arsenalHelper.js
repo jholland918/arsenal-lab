@@ -102,7 +102,8 @@ define(function(require) {
             html: true,
             selector: '[rel="meta"]',
             trigger: 'hover',
-            delay: {show: 500, hide: 100}
+            delay: {show: 500, hide: 100},
+            template: '<div class="popover skill-meta-pop" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
         };
 
         $('body').popover(popOverSettings);

@@ -123,7 +123,7 @@ define(function(require) {
 
         var skillNumber = util.padNumber(skill.skill_number, 3);
 
-        html += '<div class="panel panel-default">';
+        html += '<div class="panel panel-default skill-meta">';
         html += '<div class="panel-heading">' + skill.name + ' <span class="skill-id-rarity"><span class="skill-id" title="ID">' + skillNumber + '</span> <span title="Rarity">' + skillRarity + '</span></span></div>';
         html += '<div class="panel-body">';
         html += '<p class="skill-stats">COST ' + skill.cost + strDef + ' @ ' + skillUse + ' ' + skill.distance + '</p>';

@@ -44,6 +44,13 @@
 
 /* Skill Meta
 ------------------------------------------------------------------------------*/
+.skill-meta {
+}
+
+.skill-meta-pop {
+    min-width: 320px;
+}
+
 .skill-id {
     width: 30px;
     display: inline-block;
