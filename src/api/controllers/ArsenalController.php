@@ -42,7 +42,7 @@ class ArsenalController extends Controller {
 
         $is_valid = GUMP::is_valid($_POST, array(
                     'name' => 'max_len,50',
-                    'description' => 'max_len,250',
+                    'description' => 'max_len,1000',
                     'config' => 'max_len,1000',
                     'author' => 'max_len,50',
                     'prototype' => 'integer'
@@ -52,7 +52,7 @@ class ArsenalController extends Controller {
 
             $response = [
                 'success' => 0,
-                'error' => ['error' => $is_valid]
+                'error' => $is_valid
             ];
 
             $this->respond($response);

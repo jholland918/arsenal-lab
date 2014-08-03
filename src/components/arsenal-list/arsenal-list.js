@@ -24,21 +24,27 @@ define(function(require) {
         $(document).on("arsenalSaveClicked", function(event, params) {
 
             var payload = params.saveFormData;
-            
+
             payload.push({
                 "name": "config",
                 "value": arsenalConverter.buildArsenalConfig(self.arsenalItems())
             });
-            
+
             var dto = {
                 lastInsertId: null,
                 payload: payload
             };
-            
+
             arsenalClient.save(dto)
                     .then(self.updateAfterSave)
                     .catch(function(error) {
-                        alert(JSON.stringify(error));
+                        if (_.has(error, 'alert')) {
+                            var errorModal = $('#error-modal');
+                            errorModal.find('.modal-body').html(error.alert.join('<br>'));
+                            errorModal.modal();
+                        } else {
+                            alert(JSON.stringify(error));
+                        }
                     });
         });
 
@@ -75,9 +81,9 @@ define(function(require) {
             var errors = validateSkillSelection(params);
 
             if (errors.length > 0) {
-                
+
                 var errorModal = $('#error-modal');
-                errorModal.find('.modal-body').html(errors.join('<br>'));               
+                errorModal.find('.modal-body').html(errors.join('<br>'));
                 errorModal.modal();
                 return;
             }

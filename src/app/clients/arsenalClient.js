@@ -59,12 +59,11 @@ define(["rsvp"], function(rsvp) {
                 data: dto.payload,
                 dataType: 'json',
                 success: function(response) {
-
                     if (response.success) {
                         dto.lastInsertId = response.data.lastInsertId;
                         resolve(dto);
                     } else {
-                        reject('Error saving data.');
+                        reject({alert: response.error});
                     }
                 },
                 error: function(jqXHR) {

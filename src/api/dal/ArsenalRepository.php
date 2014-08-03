@@ -55,7 +55,7 @@ class ArsenalRepository extends Repository {
 
             $statement = $connection->prepare(ArsenalSql::insert());
             $statement->bindParam(':name', $arsenal->name, PDO::PARAM_STR, 50);
-            $statement->bindParam(':description', $arsenal->description, PDO::PARAM_STR, 250);
+            $statement->bindParam(':description', $arsenal->description, PDO::PARAM_STR, 1000);
             $statement->bindParam(':config', $arsenal->config, PDO::PARAM_STR, 1000);
             $statement->bindParam(':author', $arsenal->author, PDO::PARAM_STR, 50);
             $statement->bindParam(':created_date', date("Y-m-d H:i:s"), PDO::PARAM_STR, 50);
