@@ -43,8 +43,7 @@ define(function(require) {
         });
 
         self.updateAfterSave = function(dto) {
-
-            var url = window.location.protocol + '//' + window.location.hostname + '/arsenal-lab/#/arsenal-show/' + dto.lastInsertId;
+            var url = window.location.protocol + '//' + window.location.hostname + '/arsenal-lab/#/arsenal/' + dto.lastInsertId;
             window.location = url;
         };
 

@@ -17,7 +17,8 @@ define(function(require) {
         self.author = ko.observable();
         self.created_date = ko.observable();
         self.description = ko.observable();
-        self.url = ko.observable();
+        self.showUrl = ko.observable();
+        self.editUrl = ko.observable();
         self.name = ko.observable();
         
         this.arsenalId = params.id;
@@ -45,7 +46,8 @@ define(function(require) {
         self.author(dto.data.arsenal.author);
         self.created_date(dto.data.arsenal.created_date);
         self.description(dto.data.arsenal.description);
-        self.url(window.location.protocol + '//' + window.location.hostname + '/arsenal-lab/#/arsenal-show/' + dto.data.arsenal.id);
+        self.showUrl(window.location.protocol + '//' + window.location.hostname + '/arsenal-lab/#/arsenal/' + dto.data.arsenal.id);
+        self.editUrl(window.location.protocol + '//' + window.location.hostname + '/arsenal-lab/#/arsenal/edit/' + dto.data.arsenal.id);
         self.name(dto.data.arsenal.name);
     };
 

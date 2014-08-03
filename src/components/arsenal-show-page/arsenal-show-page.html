@@ -11,7 +11,7 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-body">
-                <h4><a data-bind="text: url, attr: { href: url  }" href="#" target="_blank"></a></h4>
+                <h4><a data-bind="text: showUrl, attr: { href: showUrl  }" href="#" target="_blank"></a></h4>
                 <p data-bind="text: description"></p>
                 <p>Created on <span data-bind="text: created_date"></span></p>
             </div>
@@ -23,6 +23,6 @@
 
 <div class="row">
     <div class="col-md-4">
-        <a data-bind="attr: { href: url }" class="btn btn-primary btn-md btn-block offset-bottom-md" role="button" href="#" >Edit</a>
+        <a data-bind="attr: { href: editUrl }" class="btn btn-primary btn-md btn-block offset-bottom-md" role="button" href="#" >Edit</a>
     </div>
 </div>
