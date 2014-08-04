@@ -66,8 +66,8 @@ define(function(require) {
             var sortedArsenal = arsenalHelper.arsenalSort(newArsenal);
             self.arsenalItems(sortedArsenal);
             
-            //debugger;
-
+//            debugger;
+            
             var schools = [];
 
             _(randomArsenal).forEach(function(skillId) {
@@ -79,7 +79,7 @@ define(function(require) {
                 schools.push(foundSkill.school);
             });
             
-            self.currentSchools = _.uniq(schools);
+            self.currentSchools = _.without(_.uniq(schools), '');
 
             $(document).trigger("schoolsUpdated", {currentSchools: self.currentSchools});
         });
