@@ -25,6 +25,9 @@ define(['jquery', 'knockout', './router', 'bootstrap', 'knockout-projections'], 
 
   ko.components.register('cost-chart', { require: 'components/cost-chart/cost-chart' });
 
+  ko.components.register('arsenal-header', { require: 'components/arsenal-header/arsenal-header' });
+
+
   // [Scaffolded component registrations will be inserted here. To retain this feature, don't remove this comment.]
 
   // Start the application

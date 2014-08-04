@@ -29,6 +29,36 @@
     background-image: url("/arsenal-lab/img/banner3.png"); 
 }
 
+/* Arsenal Header
+------------------------------------------------------------------------------*/
+.arsenal-header {
+    position:relative;
+}
+
+.case-count {
+    background-color: #529c86;
+    display: inline-block;    
+    margin-right: 15px;
+}
+
+.school-list {
+    position: absolute;
+    bottom:5px;
+    right:15px;
+}
+
+.school-list li {
+    display: inline-block;
+    list-style-type: none;
+    border: 1px solid #529c86;
+    min-width: 40px;
+    min-height: 26px;
+}
+
+.school-list li img {
+    background-color: #529c86;
+}
+
 /* Arsenal List
 ------------------------------------------------------------------------------*/
 .arsenal-list li {
@@ -268,7 +298,8 @@
 }
 
 .bar-chart td {
-    height: 100px;
+    /*height: 100px;*/
+    height: 98px;
 }
 
 .bar {

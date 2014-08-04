@@ -13,6 +13,7 @@ define(function(require) {
         var self = this;
         self.skills = null;
         self.arsenalItems = ko.observableArray();
+        self.currentSchools = null;
 
         self.arsenalItems.subscribe(function(changedArsenal) {
 
@@ -77,7 +78,7 @@ define(function(require) {
         }
 
         $(document).on("skillConfirmClicked", function(event, params) {
-
+            
             var errors = validateSkillSelection(params);
 
             if (errors.length > 0) {
@@ -89,6 +90,8 @@ define(function(require) {
             }
 
             addNewSkills(params);
+            
+            $(document).trigger("schoolsUpdated", {currentSchools: self.currentSchools});
         });
 
         var addNewSkills = function(params) {
@@ -136,7 +139,6 @@ define(function(require) {
 
             arsenalHelper.updateChart(self.arsenalItems());
         };
-
 
         /**
          * @param {type} direction values may be 'before' or 'after'
@@ -242,7 +244,11 @@ define(function(require) {
             if (count.matched > 3) {
                 errors.push('Arsenal can contain a maximum of 3 copies of each skill. Maximum exceeded (' + count.matched + ').');
             }
-
+            
+            if (errors.length === 0) {
+                self.currentSchools = schools;
+            }
+            
             return errors;
         };
 
