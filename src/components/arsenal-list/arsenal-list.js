@@ -65,6 +65,23 @@ define(function(require) {
             var newArsenal = arsenalConverter.buildNewArsenalById(randomArsenal, self.skills);
             var sortedArsenal = arsenalHelper.arsenalSort(newArsenal);
             self.arsenalItems(sortedArsenal);
+            
+            //debugger;
+
+            var schools = [];
+
+            _(randomArsenal).forEach(function(skillId) {
+
+                var foundSkill = _.find(self.skills, function(skill) {
+                    return skill.id === skillId;
+                });
+                
+                schools.push(foundSkill.school);
+            });
+            
+            self.currentSchools = _.uniq(schools);
+
+            $(document).trigger("schoolsUpdated", {currentSchools: self.currentSchools});
         });
 
         if (params.mode === 'show') {
@@ -78,7 +95,7 @@ define(function(require) {
         }
 
         $(document).on("skillConfirmClicked", function(event, params) {
-            
+
             var errors = validateSkillSelection(params);
 
             if (errors.length > 0) {
@@ -90,7 +107,7 @@ define(function(require) {
             }
 
             addNewSkills(params);
-            
+
             $(document).trigger("schoolsUpdated", {currentSchools: self.currentSchools});
         });
 
@@ -244,11 +261,11 @@ define(function(require) {
             if (count.matched > 3) {
                 errors.push('Arsenal can contain a maximum of 3 copies of each skill. Maximum exceeded (' + count.matched + ').');
             }
-            
+
             if (errors.length === 0) {
                 self.currentSchools = schools;
             }
-            
+
             return errors;
         };
 

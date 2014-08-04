@@ -3,6 +3,8 @@ define(['knockout', 'text!./arsenal-header.html'], function(ko, templateMarkup) 
     function ArsenalHeader(params) {
 
         var self = this;
+        
+        self.arsenalTitle = params.arsenalTitle;
 
         self.psychoVisible = ko.observable(false);
         self.opticalVisible = ko.observable(false);

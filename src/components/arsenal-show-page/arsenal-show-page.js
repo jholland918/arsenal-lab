@@ -20,6 +20,7 @@ define(function(require) {
         self.showUrl = ko.observable();
         self.editUrl = ko.observable();
         self.name = ko.observable();
+        self.arsenalTitle = ko.observable();
         
         this.arsenalId = params.id;
 
@@ -43,12 +44,12 @@ define(function(require) {
 
         var self = dto.self;
 
-        self.author(dto.data.arsenal.author);
         self.created_date(dto.data.arsenal.created_date);
         self.description(dto.data.arsenal.description);
         self.showUrl(window.location.protocol + '//' + window.location.hostname + '/arsenal-lab/#/arsenal/' + dto.data.arsenal.id);
         self.editUrl(window.location.protocol + '//' + window.location.hostname + '/arsenal-lab/#/arsenal/edit/' + dto.data.arsenal.id);
-        self.name(dto.data.arsenal.name);
+        
+        self.arsenalTitle(dto.data.arsenal.name + '<br><small>by ' + dto.data.arsenal.author + '</small>');
     };
 
     // This runs when the component is torn down. Put here any logic necessary to clean up,

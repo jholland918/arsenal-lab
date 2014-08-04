@@ -41,10 +41,10 @@ class ArsenalController extends Controller {
     public function create() {
 
         $is_valid = GUMP::is_valid($_POST, array(
-                    'name' => 'max_len,50',
+                    'name' => 'max_len,15',
                     'description' => 'max_len,1000',
                     'config' => 'max_len,1000',
-                    'author' => 'max_len,50',
+                    'author' => 'max_len,15',
                     'prototype' => 'integer'
         ));
 
