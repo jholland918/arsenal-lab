@@ -65,21 +65,8 @@ define(function(require) {
             var newArsenal = arsenalConverter.buildNewArsenalById(randomArsenal, self.skills);
             var sortedArsenal = arsenalHelper.arsenalSort(newArsenal);
             self.arsenalItems(sortedArsenal);
-            
-//            debugger;
-            
-            var schools = [];
 
-            _(randomArsenal).forEach(function(skillId) {
-
-                var foundSkill = _.find(self.skills, function(skill) {
-                    return skill.id === skillId;
-                });
-                
-                schools.push(foundSkill.school);
-            });
-            
-            self.currentSchools = _.without(_.uniq(schools), '');
+            self.currentSchools = getCurrentSchools(self.skills, randomArsenal);
 
             $(document).trigger("schoolsUpdated", {currentSchools: self.currentSchools});
         });
@@ -294,11 +281,15 @@ define(function(require) {
                 },
                 data: []
             };
+
             arsenalClient.getById(dto)
                     .then(function(dto) {
 
                         var arsenalItems = arsenalConverter.buildArsenal(dto.data.arsenal, self.skills);
                         self.arsenalItems(arsenalItems);
+
+                        self.currentSchools = getCurrentSchools(self.skills, dto.data.arsenal.config, true);
+                        $(document).trigger("schoolsUpdated", {currentSchools: self.currentSchools});
                     })
                     .catch(function(error) {
                         alert(error);
@@ -309,6 +300,29 @@ define(function(require) {
             var newArsenal = arsenalConverter.buildNewArsenal(arsenal, self.skills);
             self.arsenalItems(newArsenal);
         }
+    };
+
+    var getCurrentSchools = function(skills, arsenal, isConfig) {
+        
+        if (isConfig) {
+            arsenal = _.pluck(JSON.parse('[' + arsenal + ']'), 'id');
+        }
+
+        var currentSchools;
+        var schools = [];
+
+        _(arsenal).forEach(function(skillId) {
+
+            var foundSkill = _.find(skills, function(skill) {
+                return skill.id === skillId;
+            });
+
+            schools.push(foundSkill.school);
+        });
+
+        currentSchools = _.without(_.uniq(schools), '');
+
+        return currentSchools;
     };
 
     // This runs when the component is torn down. Put here any logic necessary to clean up,
