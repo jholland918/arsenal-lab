@@ -23,6 +23,8 @@ define(function(require) {
         arsenalHelper.initMetaPopovers();
 
         $(document).on("arsenalSaveClicked", function(event, params) {
+            
+            debugger;
 
             var payload = params.saveFormData;
 

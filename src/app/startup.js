@@ -11,11 +11,11 @@ define(['jquery', 'knockout', './router', 'bootstrap', 'knockout-projections'], 
 
   ko.components.register('arsenal-list', { require: 'components/arsenal-list/arsenal-list' });
 
-  ko.components.register('arsenal-create-page', { require: 'components/arsenal-create-page/arsenal-create-page' });
+  ko.components.register('arsenal-create-page', { require: 'components/arsenal/create-page/create-page' });
 
-  ko.components.register('arsenal-edit-page', { require: 'components/arsenal-edit-page/arsenal-edit-page' });
+  ko.components.register('arsenal-edit-page', { require: 'components/arsenal/edit-page/edit-page' });
 
-  ko.components.register('arsenal-show-page', { require: 'components/arsenal-show-page/arsenal-show-page' });
+  ko.components.register('arsenal-show-page', { require: 'components/arsenal/show-page/show-page' });
 
   ko.components.register('random-modal', { require: 'components/random-modal/random-modal' });
 

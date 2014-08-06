@@ -6,12 +6,15 @@ define(["rsvp"], function(rsvp) {
     var getAll = function(dto) {
 
         return new rsvp.Promise(function(resolve, reject) {
+            
+            debugger;
 
             $.ajax({
                 type: 'GET',
                 url: '/arsenal-lab/api/arsenals',
                 dataType: 'json',
                 success: function(response) {
+                    debugger;
                     if (response.success) {
                         dto.data.arsenals = response.data;
                         resolve(dto);

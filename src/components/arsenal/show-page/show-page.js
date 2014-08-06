@@ -1,7 +1,7 @@
 define(function(require) {
 
     var ko = require('knockout');
-    var templateMarkup = require('text!./arsenal-show-page.html');
+    var templateMarkup = require('text!./show-page.html');
     var skillClient = require('/../app/clients/skillClient.js');
     var arsenalClient = require('/../app/clients/arsenalClient.js');
 

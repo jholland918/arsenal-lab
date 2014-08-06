@@ -1,7 +1,7 @@
 define(function(require) {
     
     var ko = require('knockout');
-    var templateMarkup = require('text!./arsenal-edit-page.html');
+    var templateMarkup = require('text!./edit-page.html');
 
     function ArsenalEditPage(params) {
         
