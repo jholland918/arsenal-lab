@@ -9,24 +9,23 @@ define(['jquery', 'knockout', './router', 'bootstrap', 'knockout-projections'], 
     template: { require: 'text!components/about-page/about.html' }
   });
 
-  ko.components.register('arsenal-list', { require: 'components/arsenal-list/arsenal-list' });
-
-  ko.components.register('arsenal-create-page', { require: 'components/arsenal/create-page/create-page' });
-
-  ko.components.register('arsenal-edit-page', { require: 'components/arsenal/edit-page/edit-page' });
-
-  ko.components.register('arsenal-show-page', { require: 'components/arsenal/show-page/show-page' });
-
-  ko.components.register('random-modal', { require: 'components/random-modal/random-modal' });
-
-  ko.components.register('skills-modal', { require: 'components/skills-modal/skills-modal' });
-
-  ko.components.register('save-modal', { require: 'components/save-modal/save-modal' });
-
-  ko.components.register('cost-chart', { require: 'components/cost-chart/cost-chart' });
-
-  ko.components.register('arsenal-header', { require: 'components/arsenal-header/arsenal-header' });
-
+  ko.components.register('arsenal:cost-chart', { require: 'components/arsenal/cost-chart/cost-chart' });
+  
+  ko.components.register('arsenal:create-page', { require: 'components/arsenal/create-page/create-page' });
+  
+  ko.components.register('arsenal:edit-page', { require: 'components/arsenal/edit-page/edit-page' });
+  
+  ko.components.register('arsenal:header', { require: 'components/arsenal/header/header' });
+  
+  ko.components.register('arsenal:list', { require: 'components/arsenal/list/list' });
+  
+  ko.components.register('arsenal:random-modal', { require: 'components/arsenal/random-modal/random-modal' });
+  
+  ko.components.register('arsenal:save-modal', { require: 'components/arsenal/save-modal/save-modal' });
+  
+  ko.components.register('arsenal:show-page', { require: 'components/arsenal/show-page/show-page' });
+  
+  ko.components.register('arsenal:skills-modal', { require: 'components/arsenal/skills-modal/skills-modal' });
 
   // [Scaffolded component registrations will be inserted here. To retain this feature, don't remove this comment.]
 

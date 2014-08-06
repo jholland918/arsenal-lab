@@ -1,13 +1,13 @@
 <div class="row">
     <div class="col-md-8">
-        <arsenal-header params="arsenalTitle 'Edit'"></arsenal-header>
+        <arsenal:header params="arsenalTitle 'Edit'"></arsenal:header>
     </div>
     <div class="col-md-4">
-        <cost-chart></cost-chart>
+        <arsenal:cost-chart></arsenal:cost-chart>
     </div>
 </div>
 
-<arsenal-list params="mode: 'edit', arsenalId: arsenalId"></arsenal-list>
+<arsenal:list params="mode: 'edit', arsenalId: arsenalId"></arsenal:list>
 
 <div class="row">
     <div class="col-md-8">
@@ -18,4 +18,4 @@
     </div>
 </div>
 
-<save-modal></save-modal>
+<arsenal:save-modal></arsenal:save-modal>

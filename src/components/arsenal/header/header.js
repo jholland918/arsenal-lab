@@ -1,4 +1,4 @@
-define(['knockout', 'text!./arsenal-header.html'], function(ko, templateMarkup) {
+define(['knockout', 'text!./header.html'], function(ko, templateMarkup) {
 
     function ArsenalHeader(params) {
 

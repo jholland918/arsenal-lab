@@ -12,9 +12,9 @@ define(["knockout", "crossroads", "hasher"], function(ko, crossroads, hasher) {
     return new Router({
         routes: [
             {url: '', params: {page: 'home-page'}},
-            {url: 'arsenal/create', params: {page: 'arsenal-create-page'}},
-            {url: 'arsenal/edit/{id}', params: {page: 'arsenal-edit-page'}},
-            {url: 'arsenal/{id}', params: {page: 'arsenal-show-page'}}
+            {url: 'arsenal/create', params: {page: 'arsenal:create-page'}},
+            {url: 'arsenal/edit/{id}', params: {page: 'arsenal:edit-page'}},
+            {url: 'arsenal/{id}', params: {page: 'arsenal:show-page'}}
         ]
     });
 

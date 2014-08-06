@@ -7,14 +7,11 @@ define(["rsvp"], function(rsvp) {
 
         return new rsvp.Promise(function(resolve, reject) {
             
-            debugger;
-
             $.ajax({
                 type: 'GET',
                 url: '/arsenal-lab/api/arsenals',
                 dataType: 'json',
                 success: function(response) {
-                    debugger;
                     if (response.success) {
                         dto.data.arsenals = response.data;
                         resolve(dto);

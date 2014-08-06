@@ -1,7 +1,7 @@
 define(function(require) {
 
     var ko = require('knockout');
-    var templateMarkup = require('text!./arsenal-list.html');
+    var templateMarkup = require('text!./list.html');
     var skillClient = require('/../app/clients/skillClient.js');
     var arsenalClient = require('/../app/clients/arsenalClient.js');
     var arsenalHelper = require('/../app/lib/arsenalHelper.js');
@@ -24,8 +24,6 @@ define(function(require) {
 
         $(document).on("arsenalSaveClicked", function(event, params) {
             
-            debugger;
-
             var payload = params.saveFormData;
 
             payload.push({
