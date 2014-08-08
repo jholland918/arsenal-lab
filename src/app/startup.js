@@ -27,6 +27,9 @@ define(['jquery', 'knockout', './router', 'bootstrap', 'knockout-projections'], 
   
   ko.components.register('arsenal:skills-modal', { require: 'components/arsenal/skills-modal/skills-modal' });
 
+  ko.components.register('browse:index-page', { require: 'components/browse/index-page/index-page' });
+
+
   // [Scaffolded component registrations will be inserted here. To retain this feature, don't remove this comment.]
 
   // Start the application

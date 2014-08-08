@@ -44,6 +44,17 @@ EOT;
         return $sql;
     }
     
-
+    public static function CreateArsenalSkillTable() {
+        $sql = <<<'EOT'
+CREATE TABLE IF NOT EXISTS arsenal_skill
+(
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    arsenal_id INTEGER NOT NULL,
+    skill_number INTEGER NOT NULL,
+    skill_count INTEGER NOT NULL
+)
+EOT;
+        return $sql;
+    }
 
 }

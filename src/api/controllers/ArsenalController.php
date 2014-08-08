@@ -62,7 +62,7 @@ class ArsenalController extends Controller {
         $arsenal->initFromRequest($this->app->request);
 
         $lastInsertId = $this->repository->insert($arsenal);
-
+        
         $response = [
             'success' => 1,
             'data' => ['lastInsertId' => $lastInsertId]

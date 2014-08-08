@@ -20,6 +20,7 @@ class SQLiteDatabaseCreator {
     private function createTables() {
         $this->connection->exec(SQLiteDatabaseSql::CreateSkillTable());
         $this->connection->exec(SQLiteDatabaseSql::CreateArsenalTable());
+        $this->connection->exec(SQLiteDatabaseSql::CreateArsenalSkillTable());
     }
 
     private function fillTables() {

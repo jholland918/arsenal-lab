@@ -305,18 +305,23 @@ define(function(require) {
     var getCurrentSchools = function(skills, arsenal, isConfig) {
         
         if (isConfig) {
-            arsenal = _.pluck(JSON.parse('[' + arsenal + ']'), 'id');
+            arsenal = _.without(_.keys(JSON.parse(arsenal)), "0");
         }
-
+        
         var currentSchools;
         var schools = [];
 
-        _(arsenal).forEach(function(skillId) {
+        _(arsenal).forEach(function(val) {
 
             var foundSkill = _.find(skills, function(skill) {
-                return skill.id === skillId;
+                
+                if(isConfig) {
+                    return skill.skill_number === val;
+                } else {
+                    return skill.id === val;
+                }
             });
-
+            
             schools.push(foundSkill.school);
         });
 
