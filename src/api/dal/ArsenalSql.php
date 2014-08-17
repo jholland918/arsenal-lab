@@ -43,4 +43,24 @@ EOT;
         return $sql;
     }
     
+    
+    public static function insertSchools() {
+        
+        $sql = <<<'EOT'
+INSERT INTO arsenal_school 
+(
+id,
+arsenal_id,
+school_id
+)
+VALUES 
+(
+NULL,
+:arsenal_id,
+:school_id
+);
+EOT;
+        
+        return $sql;
+    }
 }

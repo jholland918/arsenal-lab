@@ -9,6 +9,7 @@ class Arsenal {
     public $author;
     public $created_date;
     public $case_size;
+    public $schools;
     
     public function initFromRequest($request) {
         $this->name = $request->post('name');
@@ -16,6 +17,7 @@ class Arsenal {
         $this->config = $request->post('config');
         $this->author = $request->post('author');
         $this->case_size = $request->post('case_size');
+        $this->schools = $request->post('schools');
     }
 
     public function escape() {

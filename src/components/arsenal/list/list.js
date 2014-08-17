@@ -36,6 +36,11 @@ define(function(require) {
                 "value": self.currentSchools.length
             });
             
+            payload.push({
+                "name": "schools",
+                "value": self.currentSchools
+            });
+            
             var dto = {
                 lastInsertId: null,
                 payload: payload

@@ -44,22 +44,46 @@ EOT;
         return $sql;
     }
     
-/*
-INSERT INTO "school" ("id","name") VALUES (1, 'Psycho')
-INSERT INTO "school" ("id","name") VALUES (2, 'Optical')
-INSERT INTO "school" ("id","name") VALUES (3, 'Nature')
-INSERT INTO "school" ("id","name") VALUES (4, 'Ki')
-INSERT INTO "school" ("id","name") VALUES (5, 'Faith')
-*/
     public static function CreateSchoolTable() {
         $sql = <<<'EOT'
 CREATE  TABLE IF NOT EXISTS  "school" 
 (
 "id" INTEGER PRIMARY KEY  NOT NULL  UNIQUE, 
 "name" TEXT NOT NULL 
-)
+);
+
+INSERT INTO "school" ("id","name") 
+SELECT 0, 'Psycho'
+WHERE NOT EXISTS(SELECT 1 FROM "school" WHERE "id" = 0 AND "name" = 'Psycho');
+
+INSERT INTO "school" ("id","name") 
+SELECT 1, 'Optical'
+WHERE NOT EXISTS(SELECT 1 FROM "school" WHERE "id" = 1 AND "name" = 'Optical');
+
+INSERT INTO "school" ("id","name") 
+SELECT 2, 'Nature'
+WHERE NOT EXISTS(SELECT 1 FROM "school" WHERE "id" = 2 AND "name" = 'Nature');
+
+INSERT INTO "school" ("id","name") 
+SELECT 3, 'Ki'
+WHERE NOT EXISTS(SELECT 1 FROM "school" WHERE "id" = 3 AND "name" = 'Ki');
+
+INSERT INTO "school" ("id","name") 
+SELECT 4, 'Faith'
+WHERE NOT EXISTS(SELECT 1 FROM "school" WHERE "id" = 4 AND "name" = 'Faith');
 EOT;
         return $sql;
     }
 
+    public static function CreateArsenalSchoolTable() {
+        $sql = <<<'EOT'
+CREATE TABLE IF NOT EXISTS "arsenal_school" 
+(
+"id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+"arsenal_id" INTEGER, 
+"school_id" INTEGER
+);
+EOT;
+        return $sql;
+    }
 }

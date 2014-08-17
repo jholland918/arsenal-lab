@@ -1,7 +1,7 @@
 <?php
 
 class ArsenalRepository extends Repository {
-    
+
     public function getAll() {
 
         try {
@@ -24,7 +24,7 @@ class ArsenalRepository extends Repository {
             echo $e->getMessage();
         }
     }
-    
+
     public function getById($id) {
 
         try {
@@ -34,7 +34,7 @@ class ArsenalRepository extends Repository {
             $statement->setFetchMode(PDO::FETCH_CLASS, 'Arsenal');
             $statement->bindParam(':id', $id, PDO::PARAM_INT);
             $statement->execute();
-        
+
             $record = $statement->fetch();
             if ($statement->rowCount() > 0) {
                 $record->escape();
@@ -47,7 +47,7 @@ class ArsenalRepository extends Repository {
             echo $e->getMessage();
         }
     }
-    
+
     public function insert(Arsenal $arsenal) {
 
         try {
@@ -62,12 +62,47 @@ class ArsenalRepository extends Repository {
             $statement->bindParam(':case_size', $arsenal->case_size, PDO::PARAM_INT);
             $statement->execute();
 
-            return $connection->lastInsertId();
+            $arsenal->id = $connection->lastInsertId();
+
+            if ($arsenal->id > 0) {
+                $this->insertSchools($arsenal);
+            }
+
+            return $arsenal->id;
         } catch (PDOException $e) {
 
             $connection = null;
             echo $e->getMessage();
         }
     }
-    
+
+    private function insertSchools(Arsenal $arsenal) {
+
+        $schools = explode ( ',' , $arsenal->schools);
+        $arsenalSchool = new ArsenalSchool();
+        $arsenalSchool->arsenal_id = $arsenal->id;
+
+        try {
+            $connection = $this->getConnection();
+
+            $statement = $connection->prepare(ArsenalSql::insertSchools());
+            $statement->bindParam(':arsenal_id', $arsenalSchool->arsenal_id, PDO::PARAM_INT);
+            $statement->bindParam(':school_id', $arsenalSchool->school_id, PDO::PARAM_INT);
+            
+            
+            foreach ($schools as $school) {
+
+                $arsenalSchool->school_id = School::$$school;
+
+                $statement->execute();
+            }
+
+            return $statement->rowCount();
+        } catch (PDOException $e) {
+
+            $connection = null;
+            echo $e->getMessage();
+        }
+    }
+
 }
