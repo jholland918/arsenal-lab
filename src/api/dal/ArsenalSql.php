@@ -11,7 +11,7 @@ description,
 config,
 author,
 created_date,
-prototype
+case_size
 FROM arsenal 
 EOT;
         return $sql;
@@ -27,7 +27,7 @@ description,
 config,
 author,
 created_date,
-prototype
+case_size
 )
 VALUES 
 (
@@ -37,7 +37,7 @@ NULL,
 :config,
 :author,
 :created_date,
-:prototype
+:case_size
 );
 EOT;
         return $sql;

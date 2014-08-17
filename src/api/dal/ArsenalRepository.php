@@ -59,7 +59,7 @@ class ArsenalRepository extends Repository {
             $statement->bindParam(':config', $arsenal->config, PDO::PARAM_STR, 1000);
             $statement->bindParam(':author', $arsenal->author, PDO::PARAM_STR, 50);
             $statement->bindParam(':created_date', date("Y-m-d H:i:s"), PDO::PARAM_STR, 50);
-            $statement->bindParam(':prototype', $arsenal->prototype, PDO::PARAM_INT);
+            $statement->bindParam(':case_size', $arsenal->case_size, PDO::PARAM_INT);
             $statement->execute();
 
             return $connection->lastInsertId();

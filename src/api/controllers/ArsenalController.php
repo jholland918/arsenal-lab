@@ -45,7 +45,7 @@ class ArsenalController extends Controller {
                     'description' => 'max_len,1000',
                     'config' => 'max_len,1000',
                     'author' => 'max_len,15',
-                    'prototype' => 'integer'
+                    'case_size' => 'integer'
         ));
 
         if ($is_valid !== true) {

@@ -38,20 +38,25 @@ CREATE TABLE IF NOT EXISTS arsenal
     config TEXT,
     author TEXT,
     created_date TEXT,
-    prototype INTEGER
+    case_size INTEGER
 )
 EOT;
         return $sql;
     }
     
-    public static function CreateArsenalSkillTable() {
+/*
+INSERT INTO "school" ("id","name") VALUES (1, 'Psycho')
+INSERT INTO "school" ("id","name") VALUES (2, 'Optical')
+INSERT INTO "school" ("id","name") VALUES (3, 'Nature')
+INSERT INTO "school" ("id","name") VALUES (4, 'Ki')
+INSERT INTO "school" ("id","name") VALUES (5, 'Faith')
+*/
+    public static function CreateSchoolTable() {
         $sql = <<<'EOT'
-CREATE TABLE IF NOT EXISTS arsenal_skill
+CREATE  TABLE IF NOT EXISTS  "school" 
 (
-    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    arsenal_id INTEGER NOT NULL,
-    skill_number INTEGER NOT NULL,
-    skill_count INTEGER NOT NULL
+"id" INTEGER PRIMARY KEY  NOT NULL  UNIQUE, 
+"name" TEXT NOT NULL 
 )
 EOT;
         return $sql;

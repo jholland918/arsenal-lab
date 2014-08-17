@@ -8,14 +8,14 @@ class Arsenal {
     public $config;
     public $author;
     public $created_date;
-    public $prototype;
+    public $case_size;
     
     public function initFromRequest($request) {
         $this->name = $request->post('name');
         $this->description = $request->post('description');
         $this->config = $request->post('config');
         $this->author = $request->post('author');
-        $this->prototype = $request->post('prototype');
+        $this->case_size = $request->post('case_size');
     }
 
     public function escape() {
@@ -23,7 +23,7 @@ class Arsenal {
         $this->description = h($this->description);
         $this->config = h($this->config);
         $this->author = h($this->author);
-        $this->prototype = h($this->prototype);
+        $this->case_size = h($this->case_size);
     }
 
 }

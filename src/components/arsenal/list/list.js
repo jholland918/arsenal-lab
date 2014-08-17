@@ -30,7 +30,12 @@ define(function(require) {
                 "name": "config",
                 "value": arsenalConverter.buildArsenalConfig(self.arsenalItems())
             });
-
+            
+            payload.push({
+                "name": "case_size",
+                "value": self.currentSchools.length
+            });
+            
             var dto = {
                 lastInsertId: null,
                 payload: payload
