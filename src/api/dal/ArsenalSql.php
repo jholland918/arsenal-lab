@@ -63,4 +63,50 @@ EOT;
         
         return $sql;
     }
+    
+    
+    public static function selectTagByName() {
+        $sql = <<<'EOT'
+SELECT
+id,
+name
+FROM tag 
+WHERE name = :name;
+EOT;
+        return $sql;
+    }
+    
+    public static function insertTag() {
+        $sql = <<<'EOT'
+INSERT INTO tag 
+(
+id,
+name
+)
+VALUES 
+(
+NULL,
+:name
+);
+EOT;
+        return $sql;
+    }
+    
+    public static function insertArsenalTag() {
+        $sql = <<<'EOT'
+INSERT INTO arsenal_tag 
+(
+id,
+arsenal_id,
+tag_id
+)
+VALUES 
+(
+NULL,
+:arsenal_id,
+:tag_id
+);
+EOT;
+        return $sql;
+    }
 }

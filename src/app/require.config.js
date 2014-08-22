@@ -13,7 +13,8 @@ var require = {
         "text":                 "bower_modules/requirejs-text/text",
         "rsvp":                 "//cdn.jsdelivr.net/rsvp/3.0.6/rsvp.amd.min",
         "lodash":               "//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min",
-        "store":                "//cdnjs.cloudflare.com/ajax/libs/store.js/1.3.14/store.min"
+        "store":                "//cdnjs.cloudflare.com/ajax/libs/store.js/1.3.14/store.min",
+        "bootstrap-tags":       "bower_modules/bootstrap-tags/dist/js/bootstrap-tags.min"
     },
     shim: {
         "bootstrap": { deps: ["jquery", "lodash"] }

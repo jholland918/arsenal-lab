@@ -7,7 +7,8 @@ define(function(require) {
         
         this.publishClicked = function() {
             
-            $('#save-modal').modal();
+            //$('#save-modal').modal();
+            $(document).trigger("arsenalPublishClicked");
         };
 
         this.sortClicked = function() {

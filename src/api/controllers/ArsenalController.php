@@ -57,7 +57,7 @@ class ArsenalController extends Controller {
 
             $this->respond($response);
         }
-
+        
         $arsenal = new Arsenal();
         $arsenal->initFromRequest($this->app->request);
 

@@ -22,6 +22,8 @@ class SQLiteDatabaseCreator {
         $this->connection->exec(SQLiteDatabaseSql::CreateArsenalTable());
         $this->connection->exec(SQLiteDatabaseSql::CreateSchoolTable());
         $this->connection->exec(SQLiteDatabaseSql::CreateArsenalSchoolTable());
+        $this->connection->exec(SQLiteDatabaseSql::CreateTagTable());
+        $this->connection->exec(SQLiteDatabaseSql::CreateArsenalTagTable());
     }
 
     private function fillTables() {

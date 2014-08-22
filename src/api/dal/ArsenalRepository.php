@@ -66,6 +66,7 @@ class ArsenalRepository extends Repository {
 
             if ($arsenal->id > 0) {
                 $this->insertSchools($arsenal);
+                $this->insertTags($arsenal);
             }
 
             return $arsenal->id;
@@ -78,7 +79,7 @@ class ArsenalRepository extends Repository {
 
     private function insertSchools(Arsenal $arsenal) {
 
-        $schools = explode ( ',' , $arsenal->schools);
+        $schools = explode(',', $arsenal->schools);
         $arsenalSchool = new ArsenalSchool();
         $arsenalSchool->arsenal_id = $arsenal->id;
 
@@ -88,8 +89,8 @@ class ArsenalRepository extends Repository {
             $statement = $connection->prepare(ArsenalSql::insertSchools());
             $statement->bindParam(':arsenal_id', $arsenalSchool->arsenal_id, PDO::PARAM_INT);
             $statement->bindParam(':school_id', $arsenalSchool->school_id, PDO::PARAM_INT);
-            
-            
+
+
             foreach ($schools as $school) {
 
                 $arsenalSchool->school_id = School::$$school;
@@ -98,6 +99,91 @@ class ArsenalRepository extends Repository {
             }
 
             return $statement->rowCount();
+        } catch (PDOException $e) {
+
+            $connection = null;
+            echo $e->getMessage();
+        }
+    }
+
+    private function insertTags(Arsenal $arsenal) {
+
+        $arsenal_tags = explode(',', $arsenal->arsenal_tags);
+        $arsenalTag = new ArsenalTag();
+        $arsenalTag->arsenal_id = $arsenal->id;
+
+        try {
+            $connection = $this->getConnection();
+
+            $statement = $connection->prepare(ArsenalSql::insertArsenalTag());
+            $statement->bindParam(':arsenal_id', $arsenalTag->arsenal_id, PDO::PARAM_INT);
+            $statement->bindParam(':tag_id', $arsenalTag->tag_id, PDO::PARAM_INT);
+
+            foreach ($arsenal_tags as $arsenal_tag) {
+
+                $tag_id = $this->getTagId($arsenal_tag);
+
+                $arsenalTag->tag_id = $tag_id;
+
+                $statement->execute();
+            }
+
+            return $statement->rowCount();
+        } catch (PDOException $e) {
+
+            $connection = null;
+            echo $e->getMessage();
+        }
+    }
+
+    private function getTagId($tagName) {
+        $tag_id = null;
+
+        $tag = $this->getTagByName($tagName);
+
+        if ($tag) {
+            $tag_id = $tag->id;
+        } else {
+            $tag_id = $this->insertTag($tagName);
+        }
+
+        return $tag_id;
+    }
+
+    private function getTagByName($tagName) {
+
+        try {
+            $connection = $this->getConnection();
+
+            $statement = $connection->prepare(ArsenalSql::selectTagByName());
+            $statement->setFetchMode(PDO::FETCH_CLASS, 'Tag');
+            $statement->bindParam(':name', $tagName, PDO::PARAM_STR, 50);
+            $statement->execute();
+
+            $record = $statement->fetch();
+            $a = $statement->rowCount();
+            if ($record) {
+                $record->escape();
+            }
+
+            return $record;
+        } catch (PDOException $e) {
+
+            $connection = null;
+            echo $e->getMessage();
+        }
+    }
+
+    public function insertTag($tagName) {
+
+        try {
+            $connection = $this->getConnection();
+
+            $statement = $connection->prepare(ArsenalSql::insertTag());
+            $statement->bindParam(':name', $tagName, PDO::PARAM_STR, 50);
+            $statement->execute();
+
+            return $connection->lastInsertId();
         } catch (PDOException $e) {
 
             $connection = null;

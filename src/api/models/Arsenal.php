@@ -10,6 +10,7 @@ class Arsenal {
     public $created_date;
     public $case_size;
     public $schools;
+    public $arsenal_tags;
     
     public function initFromRequest($request) {
         $this->name = $request->post('name');
@@ -18,6 +19,7 @@ class Arsenal {
         $this->author = $request->post('author');
         $this->case_size = $request->post('case_size');
         $this->schools = $request->post('schools');
+        $this->arsenal_tags = $request->post('arsenal_tags');
     }
 
     public function escape() {

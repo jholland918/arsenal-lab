@@ -1,5 +1,5 @@
 <?php
-
+// http://tagging.pui.ch/post/37027745720/tags-database-schemas
 class SQLiteDatabaseSql {
 
     public static function CreateSkillTable() {
@@ -48,8 +48,8 @@ EOT;
         $sql = <<<'EOT'
 CREATE  TABLE IF NOT EXISTS  "school" 
 (
-"id" INTEGER PRIMARY KEY  NOT NULL  UNIQUE, 
-"name" TEXT NOT NULL 
+    "id" INTEGER PRIMARY KEY NOT NULL UNIQUE, 
+    "name" TEXT NOT NULL 
 );
 
 INSERT INTO "school" ("id","name") 
@@ -79,9 +79,32 @@ EOT;
         $sql = <<<'EOT'
 CREATE TABLE IF NOT EXISTS "arsenal_school" 
 (
-"id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
-"arsenal_id" INTEGER, 
-"school_id" INTEGER
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, 
+    "arsenal_id" INTEGER, 
+    "school_id" INTEGER
+);
+EOT;
+        return $sql;
+    }
+    
+    public static function CreateTagTable() {
+        $sql = <<<'EOT'
+CREATE TABLE IF NOT EXISTS "tag" 
+(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, 
+    "name" TEXT
+);
+EOT;
+        return $sql;
+    }
+    
+    public static function CreateArsenalTagTable() {
+        $sql = <<<'EOT'
+CREATE TABLE IF NOT EXISTS "arsenal_tag" 
+(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, 
+    "arsenal_id" INTEGER, 
+    "tag_id" INTEGER
 );
 EOT;
         return $sql;

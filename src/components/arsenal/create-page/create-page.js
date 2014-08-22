@@ -8,7 +8,8 @@ define(function(require) {
 
         self.publishClicked = function() {
             
-            $('#save-modal').modal();
+            //$('#save-modal').modal();
+            $(document).trigger("arsenalPublishClicked");
         };
 
         self.sortClicked = function() {

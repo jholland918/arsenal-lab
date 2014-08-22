@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>arsenal-lab</title>
+    <link rel="stylesheet" type="text/css" href="bower_modules/bootstrap-tags/dist/css/bootstrap-tags.css" />
     <!-- build:css -->
       <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/darkly/bootstrap.min.css" rel="stylesheet">
       <!--
