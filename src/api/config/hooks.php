@@ -2,7 +2,7 @@
 
 $app->hook('slim.before.router', function () use($app) {
     $uri = $app->request()->getResourceUri();
-    
+
     // Remove '/api' from uri
     $uri = substr($uri, 4);
 
@@ -17,6 +17,8 @@ $app->hook('slim.before.router', function () use($app) {
         case "/skills": require CONTROLLER_PATH . '/SkillController.php';
             break;
         case "/arsenals": require CONTROLLER_PATH . '/ArsenalController.php';
+            break;
+        case "/tags": require CONTROLLER_PATH . '/TagController.php';
             break;
     }
 });

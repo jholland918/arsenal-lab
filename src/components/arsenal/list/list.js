@@ -45,8 +45,6 @@ define(function(require) {
                 lastInsertId: null,
                 payload: payload
             };
-            
-            debugger;
 
             arsenalClient.save(dto)
                     .then(self.updateAfterSave)

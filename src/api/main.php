@@ -22,6 +22,7 @@ require API_ROOT . '/dal/ArsenalRepository.php';
 require API_ROOT . '/dal/ArsenalSql.php';
 require API_ROOT . '/dal/SkillRepository.php';
 require API_ROOT . '/dal/SkillSql.php';
+require API_ROOT . '/dal/TagRepository.php';
 require API_ROOT . '/models/Arsenal.php';
 require API_ROOT . '/models/ArsenalSchool.php';
 require API_ROOT . '/models/ArsenalTag.php';

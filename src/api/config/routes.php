@@ -24,3 +24,6 @@ $app->get('/api/arsenals', 'ArsenalController:index');
 $app->get('/api/arsenals/:id', 'ArsenalController:show');
 
 $app->post('/api/arsenals', 'ArsenalController:create');
+
+// Tag
+$app->get('/api/tags', 'TagController:index');
