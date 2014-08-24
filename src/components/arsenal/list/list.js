@@ -226,6 +226,11 @@ define(function(require) {
             var quantity = params.quantity;
             var skillSelected = params.skillSelected;
             var arsenalSkill = params.arsenalSkill;
+            
+            if (skillSelected.type === 'Aura') {
+                // No need to validate when adding Aura.
+                return errors;
+            }
 
             // Clear the arsenal skill that was initially selected
             var foundSkillIndex = _.findIndex(skills, function(skill) {
