@@ -33,6 +33,14 @@ define(function(require) {
 
             $(document).trigger("skillConfirmClicked", {skillSelected: self.skillSelected(), arsenalSkill: self.arsenalSkill, quantity: data});
         };
+        
+        self.currentCaller;
+
+        self.typeClicked = function() {
+            self.hasSkillSelected = false;
+            $(self.currentCaller).removeClass('active');
+            self.skillSelected({id: -1, skill_number: -1});
+        };
 
         self.isVisibleFaith = ko.observable(true);
         self.toggleVisibleFaith = function() {
@@ -83,6 +91,7 @@ define(function(require) {
                 }
 
                 $(caller).addClass('active');
+                self.currentCaller = caller;
                 self.hasSkillSelected = true;
 
                 self.skillSelected(skill);
