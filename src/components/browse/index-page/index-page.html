@@ -9,7 +9,7 @@
 <div>
     <ul data-bind="foreach: arsenals" class="list-unstyled browse-list">
         <li>
-            <h4><a data-bind="attr: { href: $parent.arsenalUrlBase + id }" href="#" target="_blank"><span data-bind="text: (name) ? name : 'unknown'"></span><small data-bind="text: (author) ? ' by ' + author : ' by unknown'"></small></a></h4>
+            <h4><a data-bind="attr: { href: $parent.arsenalUrlBase + id }" href="#"><span data-bind="text: (name) ? name : 'unknown'"></span><small data-bind="text: (author) ? ' by ' + author : ' by unknown'"></small></a></h4>
             <div class="created-date">Created <span data-bind="text: created_date"></span></div>
         </li>
     </ul>

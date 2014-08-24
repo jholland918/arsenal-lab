@@ -50,57 +50,50 @@ class ArsenalRepository extends Repository {
 
     public function getByFilter($case, $schools, $skillNumber, $arsenalTags) {
 
-        $filters = [];
-
-        $caseFilter = '';
-        if (count($case) != 3) {
-            $caseFilter = 'case_size IN (:case_size) ';
-            array_push($filters, $caseFilter);
-        }
-
-        $schoolFilter = ArsenalSql::schoolFilter($schools);
-        if ($schoolFilter) {
-            array_push($filters, $schoolFilter);
-        }
-
-        $skillFilter = '';
-        if ($skillNumber != -1) {
-            $skillFilter = 'config LIKE \'"%:skill_number%"\' ';
-            array_push($filters, $skillFilter);
-        }
-
-        $tagFilter = ArsenalSql::tagFilter($arsenalTags);
-        if ($tagFilter) {
-            array_push($filters, $tagFilter);
-        }
-
-        $sql = ArsenalSql::select();
-        if (count($filters) > 0) {
-            $sql .= ' WHERE ' . implode(" AND ", $filters);
-        }
-
         try {
             $connection = $this->getConnection();
+
+            $filters = [];
+
+            $caseFilter = '';
+            if (count($case) != 3) {
+
+                $params = [];
+                foreach ($case as $value) {
+                    $params[] = (int) $value;
+                }
+
+                $caseFilter = 'case_size IN (' . implode(',', $params) . ') ';
+                array_push($filters, $caseFilter);
+            }
+
+            $schoolFilter = ArsenalSql::schoolFilter($connection, $schools);
+            if ($schoolFilter) {
+                array_push($filters, $schoolFilter);
+            }
+
+            $skillFilter = '';
+            if ($skillNumber != -1) {
+                $skillNumber = '%"' . $skillNumber . '"%';
+                $skillFilter = "config LIKE :skill_number ";
+                array_push($filters, $skillFilter);
+            }
+
+            $tagFilter = ArsenalSql::tagFilter($connection, $arsenalTags);
+            if ($tagFilter) {
+                array_push($filters, $tagFilter);
+            }
+
+            $sql = ArsenalSql::select();
+            if (count($filters) > 0) {
+                $sql .= ' WHERE ' . implode(" AND ", $filters);
+            }
 
             $statement = $connection->prepare($sql);
             $statement->setFetchMode(PDO::FETCH_CLASS, 'Arsenal');
 
-            if ($caseFilter) {
-                $statement->bindParam(':case_size', implode(",", $case), PDO::PARAM_STR);
-            }
-
-            if ($schoolFilter) {
-                $schools = "'" . implode("','", $schools) . "'";
-                $statement->bindParam(':schools', $schools, PDO::PARAM_STR);
-            }
-
             if ($skillFilter) {
                 $statement->bindParam(':skill_number', $skillNumber, PDO::PARAM_STR);
-            }
-
-            if ($tagFilter) {
-                $arsenalTags = "'" . implode("','", $arsenalTags) . "'";
-                $statement->bindParam(':arsenal_tags', $arsenalTags, PDO::PARAM_STR);
             }
 
             $statement->execute();
