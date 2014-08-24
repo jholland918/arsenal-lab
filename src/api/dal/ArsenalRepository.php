@@ -34,11 +34,15 @@ class ArsenalRepository extends Repository {
             $statement->setFetchMode(PDO::FETCH_CLASS, 'Arsenal');
             $statement->execute();
 
+            $arsenalIds = [];
             $records = [];
             while ($record = $statement->fetch()) {
+                $arsenalIds[] = $record->id;
                 $record->escape();
                 $records[] = $record;
             }
+            
+            $records = $this->fillArsenalMeta($arsenalIds, $records);
 
             return $records;
         } catch (PDOException $e) {
@@ -48,7 +52,7 @@ class ArsenalRepository extends Repository {
         }
     }
 
-    public function getByFilter($case, $schools, $skillNumber, $arsenalTags) {
+    public function getByFilter($case, $schools, $skillNumber, $tags) {
 
         try {
             $connection = $this->getConnection();
@@ -79,7 +83,7 @@ class ArsenalRepository extends Repository {
                 array_push($filters, $skillFilter);
             }
 
-            $tagFilter = ArsenalSql::tagFilter($connection, $arsenalTags);
+            $tagFilter = ArsenalSql::tagFilter($connection, $tags);
             if ($tagFilter) {
                 array_push($filters, $tagFilter);
             }
@@ -98,11 +102,16 @@ class ArsenalRepository extends Repository {
 
             $statement->execute();
 
+            $arsenalIds = [];
+
             $records = [];
             while ($record = $statement->fetch()) {
+                $arsenalIds[] = $record->id;
                 $record->escape();
                 $records[] = $record;
             }
+            
+            $records = $this->fillArsenalMeta($arsenalIds, $records);
 
             return $records;
         } catch (PDOException $e) {
@@ -110,6 +119,38 @@ class ArsenalRepository extends Repository {
             $connection = null;
             echo $e->getMessage();
         }
+    }
+
+    private function fillArsenalMeta($arsenalIds, $records) {
+        $arsenalTags = $this->getArsenalTags($arsenalIds);
+        $arsenalSchools = $this->getArsenalSchools($arsenalIds);
+
+        foreach ($records as $key => $value) {
+
+            $arsenal_id = $value->id;
+
+            $currentTags = [];
+            $currentSchools = [];
+
+            foreach ($arsenalTags as $arsenalTag) {
+                if ($arsenalTag['arsenal_id'] == $arsenal_id) {
+                    $currentTags[] = $arsenalTag['name'];
+                }
+            }
+
+            foreach ($arsenalSchools as $arsenalSchool) {
+                if ($arsenalSchool['arsenal_id'] == $arsenal_id) {
+                    $currentSchools[] = $arsenalSchool['name'];
+                }
+            }
+
+            $value->schools = $currentSchools;
+            $value->arsenal_tags = $currentTags;
+
+            $records[$key] = $value;
+        }
+
+        return $records;
     }
 
     public function getById($id) {
@@ -277,6 +318,42 @@ class ArsenalRepository extends Repository {
             $statement->execute();
 
             return $connection->lastInsertId();
+        } catch (PDOException $e) {
+
+            $connection = null;
+            echo $e->getMessage();
+        }
+    }
+
+    private function getArsenalSchools($arsenalIds) {
+        try {
+            $connection = $this->getConnection();
+
+            $statement = $connection->prepare(ArsenalSql::selectArsenalSchools($arsenalIds));
+            $statement->setFetchMode(PDO::FETCH_ASSOC);
+            $statement->execute();
+
+            $records = $statement->fetchAll();
+
+            return $records;
+        } catch (PDOException $e) {
+
+            $connection = null;
+            echo $e->getMessage();
+        }
+    }
+
+    private function getArsenalTags($arsenalIds) {
+        try {
+            $connection = $this->getConnection();
+
+            $statement = $connection->prepare(ArsenalSql::selectArsenalTags($arsenalIds));
+            $statement->setFetchMode(PDO::FETCH_ASSOC);
+            $statement->execute();
+
+            $records = $statement->fetchAll();
+
+            return $records;
         } catch (PDOException $e) {
 
             $connection = null;

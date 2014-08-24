@@ -28,6 +28,10 @@ define(function(require) {
         self.showArsenals = function(dto) {
             self.arsenals(dto.data.arsenals);
         };
+        
+        self.formatTags = function(tags) {
+            
+        };
 
         var dto = {
             data: []
