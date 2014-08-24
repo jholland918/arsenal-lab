@@ -156,8 +156,10 @@ define(function(require) {
     };
 
     var bindSortPopover = function(self) {
+        
+        var sortPopover = $('.sort-popover>.trigger');
 
-        $('.sort-popover>.trigger').popover({
+        sortPopover.popover({
             html: true,
             title: function() {
                 return $(this).parent().find('.head').html();
@@ -192,6 +194,7 @@ define(function(require) {
             var sortedModalSkills = skillsHelper.sortSkills(self.modalSkills, params);
 
             self.modalSkills(sortedModalSkills);
+            sortPopover.popover('hide');
         });
     };
 
