@@ -36,7 +36,7 @@ class ArsenalController extends Controller {
 
         $this->respond($response);
     }
-
+    
     // POST /api/arsenals
     public function create() {
 

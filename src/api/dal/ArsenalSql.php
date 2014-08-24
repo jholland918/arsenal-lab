@@ -1,7 +1,7 @@
 <?php
 
 class ArsenalSql {
-    
+
     public static function select() {
         $sql = <<<'EOT'
 SELECT
@@ -16,7 +16,7 @@ FROM arsenal
 EOT;
         return $sql;
     }
-    
+
     public static function insert() {
         $sql = <<<'EOT'
 INSERT INTO arsenal 
@@ -42,10 +42,9 @@ NULL,
 EOT;
         return $sql;
     }
-    
-    
+
     public static function insertSchools() {
-        
+
         $sql = <<<'EOT'
 INSERT INTO arsenal_school 
 (
@@ -60,11 +59,10 @@ NULL,
 :school_id
 );
 EOT;
-        
+
         return $sql;
     }
-    
-    
+
     public static function selectTagByName() {
         $sql = <<<'EOT'
 SELECT
@@ -75,7 +73,7 @@ WHERE name = :name;
 EOT;
         return $sql;
     }
-    
+
     public static function insertTag() {
         $sql = <<<'EOT'
 INSERT INTO tag 
@@ -91,7 +89,7 @@ NULL,
 EOT;
         return $sql;
     }
-    
+
     public static function insertArsenalTag() {
         $sql = <<<'EOT'
 INSERT INTO arsenal_tag 
@@ -109,4 +107,43 @@ NULL,
 EOT;
         return $sql;
     }
+
+    public static function schoolFilter($schools) {
+
+        $sql = '';
+
+        if (count($schools) != 5) {
+            $sql = <<<'EOT'
+id IN ( 
+SELECT DISTINCT arsenal_id 
+FROM arsenal_school AS a 
+LEFT JOIN school AS b 
+ON a.school_id = b.id 
+WHERE b.name IN (:schools) 
+) 
+EOT;
+        }
+
+        return $sql;
+    }
+
+    public static function tagFilter($arsenalTags) {
+
+        $sql = '';
+
+        if ($arsenalTags != null && count($arsenalTags) > 0) {
+            $sql = <<<'EOT'
+id IN ( 
+SELECT DISTINCT arsenal_id 
+FROM arsenal_tag AS a 
+LEFT JOIN tag AS b 
+ON a.tag_id = b.id 
+WHERE b.name IN (:arsenal_tags) 
+) 
+EOT;
+        }
+
+        return $sql;
+    }
+
 }

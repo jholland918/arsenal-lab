@@ -25,5 +25,12 @@ $app->get('/api/arsenals/:id', 'ArsenalController:show');
 
 $app->post('/api/arsenals', 'ArsenalController:create');
 
+// Browse
+$app->get('/api/browse/filter', 'BrowseController:filter');
+
+$app->get('/api/browse/latest', 'BrowseController:latest');
+
 // Tag
 $app->get('/api/tags', 'TagController:index');
+
+$app->get('/api/tags/names', 'TagController:index');

@@ -28,7 +28,8 @@ define(['jquery', 'knockout', './router', 'bootstrap', 'knockout-projections'], 
   ko.components.register('arsenal:skills-modal', { require: 'components/arsenal/skills-modal/skills-modal' });
 
   ko.components.register('browse:index-page', { require: 'components/browse/index-page/index-page' });
-
+  
+  ko.components.register('browse:filter-modal', { require: 'components/browse/filter-modal/filter-modal' });
 
   // [Scaffolded component registrations will be inserted here. To retain this feature, don't remove this comment.]
 

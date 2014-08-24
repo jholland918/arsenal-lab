@@ -1,46 +1,18 @@
 <h2>Browse</h2>
 
-<form role="form">
-    <div class="form-group">
-        <h4>Case School Size</h4>
-        <label class="radio-inline">
-            <input type="radio" name="case" value="0" checked> Any
-        </label>
-        <label class="radio-inline">
-            <input type="radio" name="case" value="1"> One
-        </label>
-        <label class="radio-inline">
-            <input type="radio" name="case" value="2"> Two
-        </label>
-        <label class="radio-inline">
-            <input type="radio" name="case" value="3"> Three
-        </label>
-    </div>
-    <div class="form-group">
-        <h4>Schools</h4>
-        <label class="checkbox-inline">
-            <input type="checkbox" name="schools" value="Psycho" checked> Psycho
-        </label>
-        <label class="checkbox-inline">
-            <input type="checkbox" name="schools" value="Optical" checked> Optical
-        </label>
-        <label class="checkbox-inline">
-            <input type="checkbox" name="schools" value="Nature" checked> Nature
-        </label>
-        <label class="checkbox-inline">
-            <input type="checkbox" name="schools" value="Ki" checked> Ki
-        </label>
-        <label class="checkbox-inline">
-            <input type="checkbox" name="schools" value="Faith" checked> Faith
-        </label>
-    </div>
-    <div class="form-group">
-        <label for="skill-number">Skill #</label>
-        <input type="text" id="skill-number" placeholder="Enter search skill">
-    </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-</form>
+<div class="form-group">
+    <button class="btn btn-primary" data-toggle="modal" data-target="#filter-modal">
+        Filter Arsenals
+    </button>
+</div>
 
 <div>
-    
+    <ul data-bind="foreach: arsenals" class="list-unstyled browse-list">
+        <li>
+            <h4><a data-bind="attr: { href: $parent.arsenalUrlBase + id }" href="#" target="_blank"><span data-bind="text: (name) ? name : 'unknown'"></span><small data-bind="text: (author) ? ' by ' + author : ' by unknown'"></small></a></h4>
+            <div class="created-date">Created <span data-bind="text: created_date"></span></div>
+        </li>
+    </ul>
 </div>
+
+<browse:filter-modal></browse:filter-modal>

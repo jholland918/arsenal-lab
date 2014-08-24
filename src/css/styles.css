@@ -59,10 +59,24 @@
     background-color: #529c86;
 }
 
+/* Browse List
+------------------------------------------------------------------------------*/
+.browse-list li {
+    background: #303030;
+    border: 1px solid #464545;
+    padding: 4px 10px 10px;
+    margin-bottom: 10px;
+}
+
 /* Arsenal List
 ------------------------------------------------------------------------------*/
 .arsenal-list li {
     margin-bottom: 6px;
+}
+
+.created-date {
+    color: #999;
+    font-size: smaller;
 }
 
 /* Random Modal

@@ -20,5 +20,7 @@ $app->hook('slim.before.router', function () use($app) {
             break;
         case "/tags": require CONTROLLER_PATH . '/TagController.php';
             break;
+        case "/browse": require CONTROLLER_PATH . '/BrowseController.php';
+            break;
     }
 });

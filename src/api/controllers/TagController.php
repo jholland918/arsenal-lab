@@ -15,6 +15,18 @@ class TagController extends Controller {
     
     // GET /api/tags
     public function index() {
+        $tags = $this->repository->getAll();
+
+        $response = [
+            'success' => 1,
+            'data' => $tags
+        ];
+
+        $this->respond($response);
+    }
+    
+    // GET /api/tags/names
+    public function names() {
         $tagNames = $this->repository->getTagNames();
 
         $response = [

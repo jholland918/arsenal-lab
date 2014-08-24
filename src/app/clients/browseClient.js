@@ -2,18 +2,19 @@
 'use strict';
 
 define(["rsvp"], function(rsvp) {
-    
-    var getAll = function(dto) {
 
+    var filter = function(dto) {
+        
         return new rsvp.Promise(function(resolve, reject) {
             
             $.ajax({
                 type: 'GET',
-                url: '/arsenal-lab/api/tags',
+                url: '/arsenal-lab/api/browse/filter',
+                data: dto.payload,
                 dataType: 'json',
                 success: function(response) {
                     if (response.success) {
-                        dto.data.tags = response.data;
+                        dto.data.arsenals = response.data;
                         resolve(dto);
                     } else {
                         reject('Error fetching data.');
@@ -25,18 +26,18 @@ define(["rsvp"], function(rsvp) {
             });
         });
     };
-
-    var getTagNames = function(dto) {
-
+    
+    var latest = function(dto) {
+        
         return new rsvp.Promise(function(resolve, reject) {
             
             $.ajax({
                 type: 'GET',
-                url: '/arsenal-lab/api/tags/names',
+                url: '/arsenal-lab/api/browse/latest',
                 dataType: 'json',
                 success: function(response) {
                     if (response.success) {
-                        dto.data.tagNames = response.data;
+                        dto.data.arsenals = response.data;
                         resolve(dto);
                     } else {
                         reject('Error fetching data.');
@@ -50,7 +51,7 @@ define(["rsvp"], function(rsvp) {
     };
 
     return {
-        getAll: getAll,
-        getTagNames: getTagNames
+        filter: filter,
+        latest: latest
     };
 });

@@ -25,6 +25,100 @@ class ArsenalRepository extends Repository {
         }
     }
 
+    public function getLatest() {
+
+        try {
+            $connection = $this->getConnection();
+
+            $statement = $connection->prepare(ArsenalSql::select() . ' ORDER BY created_date DESC LIMIT 500');
+            $statement->setFetchMode(PDO::FETCH_CLASS, 'Arsenal');
+            $statement->execute();
+
+            $records = [];
+            while ($record = $statement->fetch()) {
+                $record->escape();
+                $records[] = $record;
+            }
+
+            return $records;
+        } catch (PDOException $e) {
+
+            $connection = null;
+            echo $e->getMessage();
+        }
+    }
+
+    public function getByFilter($case, $schools, $skillNumber, $arsenalTags) {
+
+        $filters = [];
+
+        $caseFilter = '';
+        if (count($case) != 3) {
+            $caseFilter = 'case_size IN (:case_size) ';
+            array_push($filters, $caseFilter);
+        }
+
+        $schoolFilter = ArsenalSql::schoolFilter($schools);
+        if ($schoolFilter) {
+            array_push($filters, $schoolFilter);
+        }
+
+        $skillFilter = '';
+        if ($skillNumber != -1) {
+            $skillFilter = 'config LIKE \'"%:skill_number%"\' ';
+            array_push($filters, $skillFilter);
+        }
+
+        $tagFilter = ArsenalSql::tagFilter($arsenalTags);
+        if ($tagFilter) {
+            array_push($filters, $tagFilter);
+        }
+
+        $sql = ArsenalSql::select();
+        if (count($filters) > 0) {
+            $sql .= ' WHERE ' . implode(" AND ", $filters);
+        }
+
+        try {
+            $connection = $this->getConnection();
+
+            $statement = $connection->prepare($sql);
+            $statement->setFetchMode(PDO::FETCH_CLASS, 'Arsenal');
+
+            if ($caseFilter) {
+                $statement->bindParam(':case_size', implode(",", $case), PDO::PARAM_STR);
+            }
+
+            if ($schoolFilter) {
+                $schools = "'" . implode("','", $schools) . "'";
+                $statement->bindParam(':schools', $schools, PDO::PARAM_STR);
+            }
+
+            if ($skillFilter) {
+                $statement->bindParam(':skill_number', $skillNumber, PDO::PARAM_STR);
+            }
+
+            if ($tagFilter) {
+                $arsenalTags = "'" . implode("','", $arsenalTags) . "'";
+                $statement->bindParam(':arsenal_tags', $arsenalTags, PDO::PARAM_STR);
+            }
+
+            $statement->execute();
+
+            $records = [];
+            while ($record = $statement->fetch()) {
+                $record->escape();
+                $records[] = $record;
+            }
+
+            return $records;
+        } catch (PDOException $e) {
+
+            $connection = null;
+            echo $e->getMessage();
+        }
+    }
+
     public function getById($id) {
 
         try {
@@ -123,9 +217,11 @@ class ArsenalRepository extends Repository {
 
                 $tag_id = $this->getTagId($arsenal_tag);
 
-                $arsenalTag->tag_id = $tag_id;
+                if ($tag_id > 0) {
+                    $arsenalTag->tag_id = $tag_id;
 
-                $statement->execute();
+                    $statement->execute();
+                }
             }
 
             return $statement->rowCount();
@@ -175,6 +271,10 @@ class ArsenalRepository extends Repository {
     }
 
     public function insertTag($tagName) {
+
+        if ($tagName === '') {
+            return -1;
+        }
 
         try {
             $connection = $this->getConnection();
