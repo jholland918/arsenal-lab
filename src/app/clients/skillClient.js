@@ -1,13 +1,16 @@
 /*global define */
 'use strict';
 
-define(["rsvp", "store"], function(rsvp, store) {
-
+define(function(require) {
+    
+    var rsvp = require('rsvp');
+    var expiringStore = require('/../app/lib/expiringStore.js');
+    
     var getAll = function(dto) {
         
         return new rsvp.Promise(function(resolve, reject) {
             
-            var skills = store.get('skills');
+            var skills = expiringStore.get('skills');
 
             if (skills) {
                 dto.data.skills = skills;
@@ -21,7 +24,7 @@ define(["rsvp", "store"], function(rsvp, store) {
                 dataType: 'json',
                 success: function(response) {
                     if (response.success) {
-                        store.set('skills', response.data);
+                        expiringStore.set('skills', response.data, 86400000); // Expire after 24 hours
                         dto.data.skills = response.data;
                         resolve(dto);
                     } else {
