@@ -23,7 +23,7 @@ class BrowseController extends Controller {
         $skillNumber = $request->get('skill-number');
         $arsenalTags = $request->get('arsenal-tags');
         $page = $request->get('page');
-        $recordsPerPage = 2;
+        $recordsPerPage = 10;
         
         $latestTotal = $this->repository->filterTotal($case, $schools, $skillNumber, $arsenalTags);
 
