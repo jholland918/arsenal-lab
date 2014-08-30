@@ -15,7 +15,11 @@ define(["knockout", "crossroads", "hasher"], function(ko, crossroads, hasher) {
             {url: 'arsenal/create', params: {page: 'arsenal:create-page'}},
             {url: 'arsenal/edit/{id}', params: {page: 'arsenal:edit-page'}},
             {url: 'arsenal/{id}', params: {page: 'arsenal:show-page'}},
-            {url: 'browse', params: {page: 'browse:index-page'}}
+//            {url: 'browse', params: {page: 'browse:index-page'}},
+//            {url: 'browse?page={page}', params: {page: 'browse:index-page'}}
+            {url: 'browse/latest', params: {page: 'browse:index-page'}},
+            {url: 'browse/latest?page={page}', params: {page: 'browse:index-page'}},
+            {url: 'browse/filter', params: {page: 'browse:index-page'}}
         ]
     });
 

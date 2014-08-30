@@ -19,6 +19,8 @@ require API_ROOT . '/controllers/Controller.php';
 require API_ROOT . '/dal/ConnectionFactory.php';
 require API_ROOT . '/dal/Repository.php';
 require API_ROOT . '/dal/ArsenalRepository.php';
+require API_ROOT . '/dal/ArsenalBrowseRepository.php';
+require API_ROOT . '/dal/ArsenalBrowseSql.php';
 require API_ROOT . '/dal/ArsenalSql.php';
 require API_ROOT . '/dal/SkillRepository.php';
 require API_ROOT . '/dal/SkillSql.php';
@@ -34,6 +36,7 @@ require API_ROOT . '/util/globalFunctions.php';
 require API_ROOT . '/util/SQLiteDatabaseCreator.php';
 require API_ROOT . '/util/SQLiteDatabaseSql.php';
 require API_ROOT . '/vendor/GUMP/gump.class.php';
+require API_ROOT . '/vendor/PHP-Pagination/Pagination.class.php';
 
 $SQLiteDatabaseCreator = new SQLiteDatabaseCreator();
 $SQLiteDatabaseCreator->createDatabase();

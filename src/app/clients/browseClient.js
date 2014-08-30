@@ -15,6 +15,7 @@ define(["rsvp"], function(rsvp) {
                 success: function(response) {
                     if (response.success) {
                         dto.data.arsenals = response.data;
+                        dto.data.paginationMarkup = response.paginationMarkup;
                         resolve(dto);
                     } else {
                         reject('Error fetching data.');
@@ -34,10 +35,12 @@ define(["rsvp"], function(rsvp) {
             $.ajax({
                 type: 'GET',
                 url: '/arsenal-lab/api/browse/latest',
+                data: dto.payload,
                 dataType: 'json',
                 success: function(response) {
                     if (response.success) {
                         dto.data.arsenals = response.data;
+                        dto.data.paginationMarkup = response.paginationMarkup;
                         resolve(dto);
                     } else {
                         reject('Error fetching data.');
