@@ -62,7 +62,7 @@ define(function(require) {
                 });
 
         self.submit = function() {
-
+            
             var payload = $('#browse-form').serializeArray();
 
             $(document).trigger("filterSubmitted", {payload: payload});

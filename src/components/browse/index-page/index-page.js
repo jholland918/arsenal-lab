@@ -15,7 +15,7 @@ define(function(require) {
         self.pagination = ko.observable();
 
         $(document).on("filterSubmitted", function(event, params) {
-
+            
             params.payload.push({
                 "name": "filter",
                 "value": true
@@ -23,7 +23,7 @@ define(function(require) {
 
             params.payload.push({
                 "name": "page",
-                "value": page
+                "value": 1
             });
 
             self.getFilterResults(params.payload);
